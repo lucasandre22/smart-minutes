@@ -1,0 +1,1892 @@
+﻿1
+00:00:00,000 --> 00:00:10,640
+Olá, eu sou Adolfo Neto, professor da UTFPR Curitiba.
+
+2
+00:00:10,640 --> 00:00:14,060
+Este aqui é o Emilhas Podcast, Mulheres da Comunitação.
+
+3
+00:00:14,060 --> 00:00:18,880
+Hoje estamos aqui com Annie Leszienowski, ela é gerente de engenharia do software no
+
+4
+00:00:18,880 --> 00:00:23,200
+iFood, líder técnico, criador e mentora de carreira em TI.
+
+5
+00:00:23,200 --> 00:00:27,000
+Quem vai entrevistá-la comigo é a professora Maria Cláudia Emmer, co-host do Emilhas
+
+6
+00:00:27,000 --> 00:00:32,000
+e coordenadora do projeto Emílias Armação e Beats. Tudo bem, Maria Cláudia?
+
+7
+00:00:32,000 --> 00:00:34,000
+Tudo bem, Adolfo?
+
+8
+00:00:34,000 --> 00:00:36,000
+Tudo joinha.
+
+9
+00:00:36,000 --> 00:00:38,000
+Atencionamos aqui por mais uma entrevista do Emílias.
+
+10
+00:00:38,000 --> 00:00:45,000
+Hoje estamos aqui também com Luisa Gomide, que é aluna de design na UTFPR e voluntária do Emílias Podcast.
+
+11
+00:00:45,000 --> 00:00:47,000
+Tudo bem, Luisa?
+
+12
+00:00:47,000 --> 00:00:50,000
+Oi, tudo bem? Tudo bem com vocês?
+
+13
+00:00:50,000 --> 00:00:51,000
+Tudo joia.
+
+14
+00:00:51,000 --> 00:00:57,400
+Então, seja bem-vinda a Emílias Podcast, Anne. Obrigado por ter aceito o nosso convite. Tudo bem?
+
+15
+00:00:57,400 --> 00:01:02,880
+Tudo bem, eu que agradeço o convite, sempre um prazer estar conversando com a comunidade,
+
+16
+00:01:02,880 --> 00:01:05,320
+com projetos legais, como o Emílias também.
+
+17
+00:01:05,320 --> 00:01:13,200
+Muito bom, então a gente sempre gosta de perguntar para as pessoas, obviamente a gente deu uma olhada lá no seu
+
+18
+00:01:13,200 --> 00:01:20,560
+na sua formação, viu que você é formada em design pela UTFPR, assim como a Luísa,
+
+19
+00:01:20,560 --> 00:01:23,200
+que está estudando design na UTFPR.
+
+20
+00:01:23,200 --> 00:01:30,280
+Mas, enfim, conta um pouco da sua história, como é que você se interessou pela área da
+
+21
+00:01:30,280 --> 00:01:31,280
+computação?
+
+22
+00:01:31,280 --> 00:01:35,200
+Talvez você possa também se encontrar como é que você se interessou inicialmente pelo
+
+23
+00:01:35,200 --> 00:01:36,200
+designer.
+
+24
+00:01:36,200 --> 00:01:37,200
+Legal.
+
+25
+00:01:37,200 --> 00:01:42,800
+Bom, a minha escolha pelo design foi bem aleatória, assim, eu estava numa época onde eu queria
+
+26
+00:01:42,800 --> 00:01:48,800
+e outras coisas. E aí como foi o primeiro ano que teve o ENEM naquele formato CISU,
+
+27
+00:01:48,800 --> 00:01:52,800
+que você conseguiria aplicar para vários cursos no Brasil todo e tal,
+
+28
+00:01:52,800 --> 00:01:56,800
+eu olhei a grade de alguns cursos e falei, "Ah, esse de design parece ser legal,
+
+29
+00:01:56,800 --> 00:01:59,800
+vou entrar no curso só para ficar um tempo aqui daqui a seis meses,
+
+30
+00:01:59,800 --> 00:02:03,800
+começo por cinho, faço vestibular de novo", foi muito nessa pegada.
+
+31
+00:02:03,800 --> 00:02:09,800
+E aí comecei a fazer um curso e tal, gostava, mas não me identificava tanto assim.
+
+32
+00:02:09,800 --> 00:02:15,800
+E aí eu começava a olhar muitas vagas de estágio de design na época, que chamava de Web Design,
+
+33
+00:02:15,800 --> 00:02:19,800
+e eram vagas para pessoas que eram estudantes de design,
+
+34
+00:02:19,800 --> 00:02:24,800
+só que tinha que saber algumas coisas ali, de código, de programação, muito básico, sim, né?
+
+35
+00:02:24,800 --> 00:02:28,800
+E aí eu olhava essas vagas, falei, "cara, que oportunidade legal!"
+
+36
+00:02:28,800 --> 00:02:30,800
+E aí eu comecei a pesquisar.
+
+37
+00:02:30,800 --> 00:02:35,800
+E fiz um curso de extensão dentro da própria OTFPR,
+
+38
+00:02:35,800 --> 00:02:40,100
+E eu fazia design na Auto FPR, acho que é importante falar isso também, né?
+
+39
+00:02:40,100 --> 00:02:48,000
+Então eu fiz esse curso de extensão de uma semana, me apaixonei, era na época, era a programação web com tabela.
+
+40
+00:02:48,000 --> 00:02:50,000
+Muito antiga assim, né?
+
+41
+00:02:50,000 --> 00:02:53,500
+Mas era aquele básico assim que fez eu me apaixonar pela área.
+
+42
+00:02:53,500 --> 00:02:57,300
+E aí eu terminei esse cursinho de uma semana ali, curso de extensão,
+
+43
+00:02:57,300 --> 00:03:02,300
+corri para a Plioteca, peguei um livro grosso desse tamanho, que ele se dá a linha USE à cabeça,
+
+44
+00:03:02,300 --> 00:03:12,300
+de HTML, CSS e tal, e cara, comecei a estudar assim e me identifiquei mesmo assim, aí passou uns quatro ou cinco meses, eu consegui meu primeiro estágio.
+
+45
+00:03:12,300 --> 00:03:22,300
+E aí comecei a aprender muito na prática, com as minhas experiências no mercado de trabalho, fui crescendo e devolvendo a minha carreira de forma muito autodidata assim também.
+
+46
+00:03:24,300 --> 00:03:32,300
+Muito legal, é importante você falar também que foi a Luna da OTFPR, regresso da OTFPR, então que legal, Anne.
+
+47
+00:03:32,300 --> 00:03:42,300
+Aí a gente pergunta também como foi sua formação na área, o que aconteceu em relação à computação depois?
+
+48
+00:03:42,300 --> 00:03:51,300
+Legal, então todo meu estudo, meu aprendizado relacionado à programação foi muito voltado para o mercado de trabalho.
+
+49
+00:03:51,300 --> 00:03:56,220
+Então, por exemplo, eu estava numa oportunidade dentro de uma empresa que tinha um trabalho de uma tecnologia,
+
+50
+00:03:56,220 --> 00:03:57,700
+uma stack específica.
+
+51
+00:03:57,700 --> 00:04:02,580
+Eu ia atrás de estudar, de aprender e logo consegui aplicar o conhecimento.
+
+52
+00:04:02,580 --> 00:04:05,780
+Eu acho que é algo que as vezes as pessoas acabam demorando um pouco, né?
+
+53
+00:04:05,780 --> 00:04:08,620
+Às vezes até fazem um curso na área de computação, né?
+
+54
+00:04:08,620 --> 00:04:12,980
+Então, mas aprende aquele muito básico ali pra fazer uma prova, pra fazer um teste.
+
+55
+00:04:12,980 --> 00:04:17,700
+E fica acabando, acaba ficando um pouco distante dessa coisa da prática mesmo, né?
+
+56
+00:04:17,700 --> 00:04:22,200
+Então eu acredito que isso acabou me ajudando muito a aprender, a desenvolver minha carreira,
+
+57
+00:04:22,200 --> 00:04:25,000
+porque eu já tinha essa necessidade de aplicar, né?
+
+58
+00:04:25,000 --> 00:04:28,400
+Então eu era muito voltada assim, aprender e aplicar, aprender e aplicar.
+
+59
+00:04:28,400 --> 00:04:32,400
+Eu acho que isso trouxe um aprendizado muito legal que funcionou para mim também, né?
+
+60
+00:04:32,400 --> 00:04:36,200
+Eu acredito muito que cada pessoa tem um estilo diferente para aprender, né?
+
+61
+00:04:36,200 --> 00:04:41,200
+Algumas pessoas gostam mais de ter aquele longo período teórico e tal.
+
+62
+00:04:41,200 --> 00:04:44,800
+Mas no meu caso ajudou muito essa coisa de você estudar, né?
+
+63
+00:04:44,800 --> 00:04:48,800
+Aprender e logo aplicar e evoluir na presoncimento também.
+
+64
+00:04:48,800 --> 00:04:56,800
+Bem legal, acho que para mim também, eu sinto que faz mais sentido as coisas que eu vejo na aula,
+
+65
+00:04:56,800 --> 00:04:58,800
+quando está colocando em prática aqui.
+
+66
+00:04:58,800 --> 00:05:00,800
+Acho que isso é profundo a mais.
+
+67
+00:05:00,800 --> 00:05:07,800
+E hoje você está trabalhando de forma remota, como o gerente de engenharia de software.
+
+68
+00:05:07,800 --> 00:05:12,800
+E a gente quer saber quais são suas atribuições nesse carro, como é que é o dia-a-dia,
+
+69
+00:05:12,800 --> 00:05:14,800
+- O que eu queria, ser o gerente de software.
+
+70
+00:05:14,800 --> 00:05:25,800
+- Legal. Hoje as minhas principais atribuições são primeiro, garantir que o time esteja rodando bem, entregando as coisas.
+
+71
+00:05:25,800 --> 00:05:33,800
+E isso acaba trazendo uma série de várias outras responsabilidades. Por exemplo, eu tenho que fazer muito trabalho com o conjunto com pessoas de outros áreas.
+
+72
+00:05:33,800 --> 00:05:36,600
+Então, eu chamo, são os meus paris, né?
+
+73
+00:05:36,600 --> 00:05:40,200
+Pessoas de produto, pessoas de design, tem stake holders também,
+
+74
+00:05:40,200 --> 00:05:41,880
+que são mais da área de design.
+
+75
+00:05:41,880 --> 00:05:45,000
+Às vezes, pode ter alguém da área de dados também, né?
+
+76
+00:05:45,000 --> 00:05:49,680
+Então, e lá conversar com essas pessoas, entender qual que é a necessidade de negócio
+
+77
+00:05:49,680 --> 00:05:51,040
+e levar pro time, né?
+
+78
+00:05:51,040 --> 00:05:53,280
+Falar, ó, galera, precisamos entregar isso aqui.
+
+79
+00:05:53,280 --> 00:05:55,040
+Como que a gente faz isso?
+
+80
+00:05:55,040 --> 00:05:59,880
+E aí, nesse como trazer o time pra perto, trazer o contexto de negócio,
+
+81
+00:05:59,880 --> 00:06:03,160
+ajudar a entender o que precisa ser feito, né?
+
+82
+00:06:03,160 --> 00:06:07,200
+Então, fazer todo esse ponte entre outras áreas
+
+83
+00:06:07,200 --> 00:06:10,360
+é o que consome boa parte do meu dia hoje também.
+
+84
+00:06:10,360 --> 00:06:12,400
+E aí, outras coisas que eu tenho que fazer também
+
+85
+00:06:12,400 --> 00:06:14,900
+é a parte de orientação técnica,
+
+86
+00:06:14,900 --> 00:06:16,700
+tomado de decisões técnicas.
+
+87
+00:06:16,700 --> 00:06:18,700
+Hoje, por exemplo, eu confio muito no meu time
+
+88
+00:06:18,700 --> 00:06:20,300
+para tomar nas decisões.
+
+89
+00:06:20,300 --> 00:06:23,200
+Mas eu acho super importante estar envolvida ali
+
+90
+00:06:23,200 --> 00:06:26,000
+para a gente conseguir chegar no consenso, tudo mais.
+
+91
+00:06:26,000 --> 00:06:29,000
+Então, a minha figura hoje como Tech Manager
+
+92
+00:06:29,000 --> 00:06:32,700
+tem um papel muito importante nas tomadas de decisões técnicas também.
+
+93
+00:06:32,700 --> 00:06:35,880
+E uma outra coisa também que é super importante é o acompanhamento de
+
+94
+00:06:35,880 --> 00:06:39,060
+envolvimento de carreira das pessoas que estão comigo, né? Então como é que eu
+
+95
+00:06:39,060 --> 00:06:44,420
+consigo garantir que essas pessoas elas estão motivadas, elas estão felizes no
+
+96
+00:06:44,420 --> 00:06:48,340
+dia a dia, elas estão desenvolvendo a carreira delas, né? Porque às vezes a
+
+97
+00:06:48,340 --> 00:06:52,820
+pessoa tá trabalhando no projeto, né? Tudo mais, mas essa pessoa tá estagnada, não
+
+98
+00:06:52,820 --> 00:06:57,140
+tá crescendo, não tá se desenvolvendo. Então o meu papel como líder dessas
+
+99
+00:06:57,140 --> 00:07:00,980
+pessoas também é oferecer meios, encontrar meios para que essas pessoas
+
+100
+00:07:00,980 --> 00:07:02,980
+que você conseguiu se desenvolvendo também.
+
+101
+00:07:02,980 --> 00:07:10,980
+Você faz um trabalho lá no Instagram, no Instagram.com/tech.ani,
+
+102
+00:07:10,980 --> 00:07:16,980
+"ani" com dois "n"s, né, ou @tech.ani, "tech.ani" também.
+
+103
+00:07:16,980 --> 00:07:20,980
+A gente viu que você já tem mais de 50 mil seguidores, né?
+
+104
+00:07:20,980 --> 00:07:24,980
+- Sim. - E esse seu trabalho, pelo que eu entendi,
+
+105
+00:07:24,980 --> 00:07:28,980
+assim, do pouco que eu consegui ver, tem bastante conteúdo lá.
+
+106
+00:07:28,980 --> 00:07:34,820
+e conteúdo lá, é mais no sentido de ajudar outras pessoas a encontrar em vagas em tecnologia da
+
+107
+00:07:34,820 --> 00:07:42,300
+informação. Como é que surgiu essa ideia de você fazer isso, fazer esse trabalho, as pessoas já
+
+108
+00:07:42,300 --> 00:07:49,100
+te procuravam para isso e aí você decidiu transformar isso no atividade? Sim, foi muito bom o caso,
+
+109
+00:07:49,100 --> 00:07:55,100
+acho que começou durante a pandemia, fazia uns dois anos e meio já, tal coisa de pandemia,
+
+110
+00:07:55,100 --> 00:08:13,100
+e aí comecei o projeto ali muito com a ideia de compartilhar a metragitória, mostrar como era o dia a dia, mas acredito que pelo fato deu já ter um tempo legal, né?
+
+111
+00:08:13,100 --> 00:08:15,840
+tinha mais de 10 anos de experiência na área,
+
+112
+00:08:15,840 --> 00:08:17,640
+muitas pessoas começaram a perguntar
+
+113
+00:08:17,640 --> 00:08:19,400
+"você parece uma atoria de carreira?"
+
+114
+00:08:19,400 --> 00:08:20,800
+"você parece uma atoria de carreira?"
+
+115
+00:08:20,800 --> 00:08:23,040
+E cara, nunca passou pela minha cabeça isso
+
+116
+00:08:23,040 --> 00:08:25,040
+porque eu sempre achei uma coisa muito cara,
+
+117
+00:08:25,040 --> 00:08:26,240
+isso é coisa de coach,
+
+118
+00:08:26,240 --> 00:08:28,040
+fica dando bantorias, tá?
+
+119
+00:08:28,040 --> 00:08:29,540
+É brincar assim, né?
+
+120
+00:08:29,540 --> 00:08:31,540
+Isso é que as pessoas começaram a me procurar
+
+121
+00:08:31,540 --> 00:08:35,320
+e aí eu falei, cara, realmente dá pra eu
+
+122
+00:08:35,320 --> 00:08:37,820
+ajudar um pouco mais perto das pessoas
+
+123
+00:08:37,820 --> 00:08:40,620
+porque às vezes a criação de conteúdo é uma coisa que eu gosto muito de fazer
+
+124
+00:08:40,620 --> 00:08:43,620
+mas acaba sendo uma coisa muito rasa às vezes assim, né?
+
+125
+00:08:43,620 --> 00:08:46,620
+Então, às vezes, pessoas que precisavam desse acompanhamento,
+
+126
+00:08:46,620 --> 00:08:50,620
+aí eu comecei a testar alguns formatos de mentoria e tal,
+
+127
+00:08:50,620 --> 00:08:54,620
+esse ano gravei alguns cursos, alguns produtos, ebook, enfim, né?
+
+128
+00:08:54,620 --> 00:08:59,620
+Para oferecer outros formatos, porque às vezes nem sempre a mentoria é uma coisa muito acessível para as pessoas, né?
+
+129
+00:08:59,620 --> 00:09:04,620
+Então, meu objetivo é sempre assim, levar essa informação para as pessoas,
+
+130
+00:09:04,620 --> 00:09:06,620
+e sempre de forma muito acessível, né?
+
+131
+00:09:06,620 --> 00:09:08,900
+que as vezes não tem condição de comprar,
+
+132
+00:09:08,900 --> 00:09:11,300
+porque tem todo o meu conteúdo lá de graça.
+
+133
+00:09:11,300 --> 00:09:15,500
+Então, acho que a proposta do projeto do Tecânia
+
+134
+00:09:15,500 --> 00:09:17,820
+é realmente levar essa informação para as pessoas.
+
+135
+00:09:17,820 --> 00:09:20,860
+E eu tenho uma motivação muito grande para esse projeto,
+
+136
+00:09:20,860 --> 00:09:22,980
+porque hoje, por exemplo, eu tenho uma vida,
+
+137
+00:09:22,980 --> 00:09:25,900
+tenho acesso a possibilidades que eu nunca teria
+
+138
+00:09:25,900 --> 00:09:27,900
+se eu não tivesse pensado trabalhar com o TI
+
+139
+00:09:27,900 --> 00:09:29,400
+e de convivê-lo na minha carreira.
+
+140
+00:09:29,400 --> 00:09:31,900
+Então, acho que o principal proposta é essa,
+
+141
+00:09:31,900 --> 00:09:34,900
+assim, que mais pessoas possam ter acessas
+
+142
+00:09:34,900 --> 00:09:37,180
+mesmo as contas de vida que eu tenho hoje também.
+
+143
+00:09:37,180 --> 00:09:44,280
+Certo, e só para complementar, né, então o Tech-Urny
+
+144
+00:09:44,280 --> 00:09:48,480
+é justamente a mentoria que você faz.
+
+145
+00:09:48,480 --> 00:09:54,780
+Isso, tem a mentoria também, a mentoria é uma das coisas que tem lá no Tech-Urny,
+
+146
+00:09:54,780 --> 00:09:56,980
+assim, também que eu ofereço para quem tem interesse,
+
+147
+00:09:56,980 --> 00:10:02,780
+mas é muito sobre principalmente mostrar a vida real de quem trabalha com TI
+
+148
+00:10:02,780 --> 00:10:08,200
+e mostrar quebrar esse estereótipo de que nossa, a pessoa tem que ser super inteligente,
+
+149
+00:10:08,200 --> 00:10:12,460
+tem que ser assim, nível em dinheiro da NASA pra conseguir trabalhar com TI e tal.
+
+150
+00:10:12,460 --> 00:10:17,980
+Então, acho que a ideia é muito essa, me mostrar lá como uma pessoa normal, uma pessoa com
+
+151
+00:10:17,980 --> 00:10:21,980
+falhas, uma pessoa que não é formada na área de computação e conseguiu desenvolver
+
+152
+00:10:21,980 --> 00:10:24,060
+a carreira pra usar disso tudo, né?
+
+153
+00:10:24,060 --> 00:10:28,660
+Então, trazer a área de take como algo um pouco mais acessível, né?
+
+154
+00:10:28,660 --> 00:10:34,660
+Uma coisa fácil, uma coisa acessível, que mais pessoas possam ter acesso a esse tipo de informação também.
+
+155
+00:10:34,660 --> 00:10:36,660
+Certo.
+
+156
+00:10:36,660 --> 00:10:38,660
+Muito interessante.
+
+157
+00:10:38,660 --> 00:10:50,660
+Entrando um pouco mais no tema que o projeto Emílias Abota, que durante o seu estudo na escola do trabalho você já enfrentou a dificuldade,
+
+158
+00:10:50,660 --> 00:10:55,660
+que você sentiu que essa dificuldade foi imposta por você ser uma mulher.
+
+159
+00:10:56,660 --> 00:11:04,720
+Eu sei que falo que eu tive sorte de não ter sofrido nenhum preconceito direto,
+
+160
+00:11:04,720 --> 00:11:10,720
+nenhuma situação muito que dê pra gente trazer aqui, mas aconteceu muito, por exemplo,
+
+161
+00:11:10,720 --> 00:11:16,580
+meu primeiro emprego CLT, quando eu era estagiada, eu fui efetivada, eu tinha ali
+
+162
+00:11:16,580 --> 00:11:22,860
+uns 21, 22 anos, então eu pensei, uma menina super novinha entrando numa equipe que só
+
+163
+00:11:22,860 --> 00:11:27,900
+Tinha homens mais velhos, já tinha as panelinhas formadas ali, né?
+
+164
+00:11:27,900 --> 00:11:31,500
+Então às vezes aconteciam umas coisas ou outras, assim, por exemplo,
+
+165
+00:11:31,500 --> 00:11:36,500
+"Ah, sei lá, vamos todo mundo almoçar, vamos todo mundo jogar um game na casa do outro,
+
+166
+00:11:36,500 --> 00:11:38,100
+vamos todo mundo..."
+
+167
+00:11:38,100 --> 00:11:42,700
+Sabe, essas coisinhas assim de vida normal assim, né?
+
+168
+00:11:42,700 --> 00:11:46,460
+E às vezes quando você é mulher, você acaba perdendo um pouco dessas coisas
+
+169
+00:11:46,460 --> 00:11:49,380
+e pode ser que isso acaba influenciando também, né?
+
+170
+00:11:49,380 --> 00:11:57,180
+Então algumas situações assim, mas eu gosto sempre de falar que ao mesmo tempo em que aconteceram essas situações assim,
+
+171
+00:11:57,180 --> 00:12:03,460
+eu tive muitas figuras importantes na minha carreira que me ajudaram muito, assim, tanto a minha questão técnica,
+
+172
+00:12:03,460 --> 00:12:09,500
+a questão de dúvidas, questão de sendo colega, amigo, no dia a dia, e eram todos homens, assim.
+
+173
+00:12:09,500 --> 00:12:14,900
+Então eu acho importante trazer isso também, porque assim, a gente como mulher,
+
+174
+00:12:14,900 --> 00:12:20,900
+Se a gente for esperar as condições ideais para estar no ambiente, onde está tudo equilibrado,
+
+175
+00:12:20,900 --> 00:12:26,900
+onde está tudo certinho e tal, dificilmente isso vai acontecer.
+
+176
+00:12:26,900 --> 00:12:29,900
+Então acho que é muito importante também a gente como mulher,
+
+177
+00:12:29,900 --> 00:12:34,900
+identificar com pessoas ali, homens e tal, que às vezes possam ser essa referência, que possam ajudar,
+
+178
+00:12:34,900 --> 00:12:41,900
+e ver muito como uma questão de parceria, de amizade, apesar de todas as coisas que acontecem,
+
+179
+00:12:41,900 --> 00:12:44,360
+é assim que a gente sabe que existe, que é uma realidade,
+
+180
+00:12:44,360 --> 00:12:49,000
+apesar de eu não ter sofrido nenhum preconceito na pele,
+
+181
+00:12:49,000 --> 00:12:51,900
+principalmente no começo de carreira, eu sei que isso existe,
+
+182
+00:12:51,900 --> 00:12:53,500
+eu sei que isso é comum,
+
+183
+00:12:53,500 --> 00:12:58,400
+hoje se fala muito sobre diversidade no mercado de trabalho, na área de TI.
+
+184
+00:12:58,400 --> 00:13:03,500
+Então esse cenário está mudando, mas ainda é um novo caminho para a gente percorrer.
+
+185
+00:13:03,500 --> 00:13:07,300
+Mas recentemente também eu comecei a refletir sobre uma outra questão,
+
+186
+00:13:07,300 --> 00:13:11,800
+que é a questão de ser uma criadora de conteúdo mulher na área de TI,
+
+187
+00:13:11,800 --> 00:13:20,200
+E criando conteúdo, eu senti na pele um pouco desse preconceito, assim, no sentido de eu vou lá e criar um conteúdo, né?
+
+188
+00:13:20,200 --> 00:13:26,480
+Eu falo "olha, tem esse jeito, x, y, z, é de estudar, tá um tópico, né, de tal abordagem"
+
+189
+00:13:26,480 --> 00:13:33,360
+E sempre acontece, sempre parece umas figuras, assim, questionando, que eu tô compartilhando, questionando, que eu tô fazendo, né?
+
+190
+00:13:33,360 --> 00:13:38,000
+Eu nunca sufre diretamente a sede, mas existem muitas meninas ali que eu...
+
+191
+00:13:38,000 --> 00:13:40,700
+A gente se conversa, se não é que a gente tinha criadora de controle,
+
+192
+00:13:40,700 --> 00:13:43,400
+só a fémia sédico, o direct do Instagram, né?
+
+193
+00:13:43,400 --> 00:13:46,500
+São coisas assim que são muito desnecessárias, assim,
+
+194
+00:13:46,500 --> 00:13:50,400
+que a gente vê que é uma questão muito cultural e raizada ali, né?
+
+195
+00:13:50,400 --> 00:13:52,800
+Então, acho que é uma coisa assim muito...
+
+196
+00:13:52,800 --> 00:13:54,900
+Muito chato, é muito difícil, né?
+
+197
+00:13:54,900 --> 00:13:56,900
+São coisas que a gente não precisaria, né?
+
+198
+00:13:56,900 --> 00:13:58,900
+Gastar tanta energia, né?
+
+199
+00:13:58,900 --> 00:14:01,900
+Vidando com esse tipo de situação, mas infelizmente...
+
+200
+00:14:01,900 --> 00:14:03,900
+Elas acabam acontecendo também,
+
+201
+00:14:03,900 --> 00:14:06,900
+e a gente como mulher tem que estar preparada para...
+
+202
+00:14:06,900 --> 00:14:10,900
+superar isso e seguir a nossa vida e não deixar os nossos subjetivos de lado,
+
+203
+00:14:10,900 --> 00:14:12,400
+que eu acho que isso é o mais importante.
+
+204
+00:14:12,400 --> 00:14:23,300
+Com certeza, isso é o mais importante, a gente não pode desistir por causa de outros,
+
+205
+00:14:23,300 --> 00:14:29,800
+ou tanto falando em comportamento de outras pessoas, quanto em falas de outras pessoas.
+
+206
+00:14:29,800 --> 00:14:34,600
+A gente não pode desistir daquilo que a gente almeja.
+
+207
+00:14:35,600 --> 00:14:39,560
+E aí uma outra pergunta, você falou do Tech Annie
+
+208
+00:14:39,560 --> 00:14:45,440
+e você participa de algum grupo de apoio para mulheres nessa área da computação?
+
+209
+00:14:45,440 --> 00:14:57,160
+Ou já participou ou algumas vezes faz algumas apresentações, participações pontuais em algum grupo?
+
+210
+00:14:57,160 --> 00:15:01,540
+Legal, eu já fiz live lá no meu Instagram chamando...
+
+211
+00:15:01,540 --> 00:15:04,440
+Tem muitas criadoras de conteúdo mulheres, né?
+
+212
+00:15:04,440 --> 00:15:08,480
+Se o pessoal, né, se começar me seguindo no Instagram, lá no @taquianhe,
+
+213
+00:15:08,480 --> 00:15:12,980
+vai começar a seguir outras pessoas também, vai começar a ver que tem muitas mulheres, assim, muito...
+
+214
+00:15:12,980 --> 00:15:20,180
+Que são autoridades, assim, na área, assim, eu acho que é muito empoderador você ver, né, esse tipo de coisa, assim, né?
+
+215
+00:15:20,180 --> 00:15:24,640
+E aí, já fiz live ali com algumas meninas também, eu acho que isso é super legal.
+
+216
+00:15:24,640 --> 00:15:31,040
+E eu participo muito da iniciativa do Programaria, que inclusive é essa camiseta que eu tô aqui, né?
+
+217
+00:15:31,040 --> 00:15:36,840
+do pessoal do Programaria, é uma organização que foca muito no treinamento ali,
+
+218
+00:15:36,840 --> 00:15:39,400
+nos envolvimento de mulheres para trabalhar na área.
+
+219
+00:15:39,400 --> 00:15:40,880
+Não só mulheres, né?
+
+220
+00:15:40,880 --> 00:15:45,160
+Mulheres, pessoas trans também, várias.
+
+221
+00:15:45,160 --> 00:15:49,280
+É muito voltado para a inclusão de pessoas aí na área de TI também, né?
+
+222
+00:15:49,280 --> 00:15:55,320
+E já sou sempre embaixadora dos eventos delas, assim, para ajudar a divulgar também aí, né?
+
+223
+00:15:55,320 --> 00:15:58,000
+Eles fazem, pelo menos uma vez por ano, eles fazem um evento.
+
+224
+00:15:58,000 --> 00:16:00,000
+Quando passado eu fui presencial.
+
+225
+00:16:00,000 --> 00:16:06,000
+E nossa, é muito legal a energia de você estar no meio de mulheres, de pessoas,
+
+226
+00:16:06,000 --> 00:16:12,000
+que se identificam, que entendem o que você sente em certos momentos.
+
+227
+00:16:12,000 --> 00:16:17,000
+Então, acho que é muito importante pra gente que a mulher tá envolvida com essas iniciativas.
+
+228
+00:16:17,000 --> 00:16:20,000
+Hoje eu não participe o tanto quanto eu gostaria.
+
+229
+00:16:20,000 --> 00:16:23,000
+Então, pra mim, quando surgiu o convite aqui do podcast,
+
+230
+00:16:23,000 --> 00:16:27,000
+eu falei "nossa, eu preciso participar, porque são iniciativas como essas
+
+231
+00:16:27,000 --> 00:16:33,000
+que fazem com que mulheres, meninas se inspirem, as vezes não desistam também de trabalhar na área,
+
+232
+00:16:33,000 --> 00:16:39,000
+então é super importante, estão super recomendo, agora vocês aqui sempre vou recomeçar também,
+
+233
+00:16:39,000 --> 00:16:45,000
+e o pessoal do Programaria também, que é uma iniciativa muito legal de inclusão.
+
+234
+00:16:45,000 --> 00:16:50,000
+Muito legal, e alguma mulher te inspirou na sua carreira?
+
+235
+00:16:50,000 --> 00:16:54,200
+Na minha carreira, eu sempre me inspirei muito em...
+
+236
+00:16:54,200 --> 00:16:58,200
+Eu nunca tive, até, sei lá, não sei, sete anos de carreira,
+
+237
+00:16:58,200 --> 00:17:03,200
+eu nunca tive muita noção de como era raro ser uma mulher na área de TI,
+
+238
+00:17:03,200 --> 00:17:05,700
+que estava crescendo, fazendo a sua carreira ali.
+
+239
+00:17:05,700 --> 00:17:09,500
+Até que um dia eu fui convidada para fazer uma palestrinha assim,
+
+240
+00:17:09,500 --> 00:17:12,700
+no lugar onde eu trabalhava, para falar sobre Ada Lovelace.
+
+241
+00:17:12,700 --> 00:17:15,700
+E até aquele momento eu não sabia quem era Ada Lovelace.
+
+242
+00:17:15,700 --> 00:17:19,200
+Acho que é por causa da não ter essa formação na área de TI e tal.
+
+243
+00:17:19,200 --> 00:17:21,440
+Eu não tinha ouvido falar.
+
+244
+00:17:21,440 --> 00:17:25,140
+E aí eu comecei a pesquisar sobre o assunto e aí começou a cair a minha ficha.
+
+245
+00:17:25,140 --> 00:17:28,440
+Eu falei "nossa cara, eu tenho um papel muito importante aqui também".
+
+246
+00:17:28,440 --> 00:17:33,240
+E aí eu comecei a ver as outras mulheres que eram minhas colegas de trabalho.
+
+247
+00:17:33,240 --> 00:17:39,840
+Eu comecei sempre a me inspirar muito a olhar pessoas ali que estavam ali no dia a dia comigo
+
+248
+00:17:39,840 --> 00:17:45,200
+e ver "nossa cara, essa pessoa tá chegando aqui, já tive líder mulher também".
+
+249
+00:17:45,200 --> 00:17:51,200
+que sempre foi muito inspirador, assim, ver e falar "cara, se essa pessoa chegou lá, eu também consigo chegar lá"
+
+250
+00:17:51,200 --> 00:17:54,960
+Então sempre me inspirei muito em mulheres que estavam no meu dia a dia, assim, também.
+
+251
+00:17:54,960 --> 00:18:01,160
+Professoras também, né, eu tive a professora Marília, que é aí da UTFPL também, né,
+
+252
+00:18:01,160 --> 00:18:05,960
+ela foi minha co-orientadora no TCCM e é orientadora no mestrado, né.
+
+253
+00:18:05,960 --> 00:18:12,200
+A professora Maria também que participou da banca do meu mestrado, ali também, da dissertação.
+
+254
+00:18:12,200 --> 00:18:15,240
+Então, nossa, ver essas mulheres assim, que são referência,
+
+255
+00:18:15,240 --> 00:18:19,800
+que desenvolveram uma carreira ali, cara, pra mim também é muito legal, muito inspirador, assim, acho que.
+
+256
+00:18:19,800 --> 00:18:23,100
+Tem várias nomes aí famosas, que a gente poderia falar também, né?
+
+257
+00:18:23,100 --> 00:18:28,500
+Mas eu acho que essas mulheres que estão no dia a dia ali são as que mais me inspiraram nos últimos anos.
+
+258
+00:18:28,500 --> 00:18:37,200
+Muito bom. E agora, a próxima pergunta é sobre as habilidades que você vê que são necessárias
+
+259
+00:18:37,200 --> 00:18:41,660
+para uma pessoa que entra na área de computação, como no seu caso,
+
+260
+00:18:41,660 --> 00:18:44,160
+tendo cursado uma graduação em outra área.
+
+261
+00:18:44,160 --> 00:18:47,000
+Essa pergunta é boa.
+
+262
+00:18:47,000 --> 00:18:51,160
+Eu sempre oriento as pessoas que querem saber isso,
+
+263
+00:18:51,160 --> 00:18:57,160
+a olharem muito para o mercado, porque acho que tem alguns conhecimentos básicos
+
+264
+00:18:57,160 --> 00:19:01,100
+que a pessoa tem que ter, por exemplo, lógica de programação, algoritmos,
+
+265
+00:19:01,100 --> 00:19:03,700
+essas coisas são muito básicas,
+
+266
+00:19:03,900 --> 00:19:08,100
+E a pessoa tem que dominar e não ir direto aprender uma linguagem de programação.
+
+267
+00:19:08,100 --> 00:19:09,580
+A gente às vezes até brinca, né?
+
+268
+00:19:09,580 --> 00:19:12,700
+Ela deve JavaScript, deve React, né?
+
+269
+00:19:12,700 --> 00:19:15,740
+A pessoa aprende uma stack, um framework, alguma coisa.
+
+270
+00:19:15,740 --> 00:19:17,380
+E só sabe trabalhar com a Qion, né?
+
+271
+00:19:17,380 --> 00:19:20,980
+Se colocar um outro projeto na uma pessoa, ela não sabe se virar, né?
+
+272
+00:19:20,980 --> 00:19:25,940
+Então, acho que é muito assim, ter essa base de conceitos, né,
+
+273
+00:19:25,940 --> 00:19:29,340
+da computação, da programação são muito importantes.
+
+274
+00:19:29,340 --> 00:19:33,180
+E outra coisa muito importante também é você olhar para o mercado.
+
+275
+00:19:33,180 --> 00:19:37,180
+Então, por exemplo, "Ah, eu tenho intenção de trabalhar como front-end.
+
+276
+00:19:37,180 --> 00:19:43,180
+Vai lá olhar as vagas do front-end, vai lá entender o que as empresas estão buscando nos profissionais.
+
+277
+00:19:43,180 --> 00:19:46,180
+Quer trabalhar com back-end? Vai olhar as vagas para entender.
+
+278
+00:19:46,180 --> 00:19:49,180
+Quer trabalhar com dados? Vai olhar as vagas para entender.
+
+279
+00:19:49,180 --> 00:19:52,180
+Porque assim, o mercado de TI se atualiza muito rápido.
+
+280
+00:19:52,180 --> 00:19:59,180
+Então, às vezes, até a pessoa que passa quatro anos na graduação, cai no mercado de trabalho.
+
+281
+00:19:59,180 --> 00:20:07,180
+A pessoa tem dificuldade de conseguir uma vaga porque ela não teve esse clica de olhar para o mercado, de estar próximo.
+
+282
+00:20:07,180 --> 00:20:14,180
+Às vezes a pessoa acaba ficando um pouco distante, tem o currículo sensacional, acadêmicamente falando, mas ainda está um pouco distante do mercado.
+
+283
+00:20:14,180 --> 00:20:21,180
+Então acho que entender essa necessidade que muda às vezes rapidamente, quando a gente olha ele por exemplo, linguagens de back-end.
+
+284
+00:20:21,180 --> 00:20:27,180
+Ainda é uma coisa mais robusta, que não muda tão rápido, mas por exemplo, front-end.
+
+285
+00:20:27,180 --> 00:20:32,860
+Então, uma coisa que às vezes muda muito mais rápido, o frame, a tecnologia, as atribuições, se você olhar, por exemplo.
+
+286
+00:20:32,860 --> 00:20:38,560
+Eu comecei como front-end lá em 2011, 2012, mais ou menos.
+
+287
+00:20:38,560 --> 00:20:43,180
+O perfil do front-end é muito diferente do que você exige hoje no mercado.
+
+288
+00:20:43,180 --> 00:20:47,480
+Então, eu mesmo, ao longo da minha carreira, minha especialidade sempre foi front-end.
+
+289
+00:20:47,480 --> 00:20:50,080
+Eu tive que me adaptar muito assim.
+
+290
+00:20:50,080 --> 00:20:53,680
+Teve até um período que eu não olhava para o mercado
+
+291
+00:20:53,680 --> 00:20:57,280
+E eu comecei a perceber que eu não estava muito feliz no emprego,
+
+292
+00:20:57,280 --> 00:21:00,480
+que eu estava começando a aplicar para vagas e não tinha retorno,
+
+293
+00:21:00,480 --> 00:21:02,920
+nem mesmo tendo ali alguns anos.
+
+294
+00:21:02,920 --> 00:21:05,840
+Então o que estava faltando? Estava faltando eu olhar para o mercado.
+
+295
+00:21:05,840 --> 00:21:08,680
+Então acho que isso é muito importante, tanto para quem está começando,
+
+296
+00:21:08,680 --> 00:21:12,120
+quanto para quem já está na área, às vezes está meio estagnado,
+
+297
+00:21:12,120 --> 00:21:15,320
+ali meio parado, meio desatualizado, dá a sua olhadinha para o mercado,
+
+298
+00:21:15,320 --> 00:21:19,520
+ali que você pode ter insights muito legais ali de recolocação,
+
+299
+00:21:19,520 --> 00:21:21,120
+mesmo para começar a sua caria.
+
+300
+00:21:22,240 --> 00:21:27,360
+Eu tenho uma pergunta adicional sobre isso, porque agora está na moda toda essa coisa
+
+301
+00:21:27,360 --> 00:21:31,520
+LLM, chat.gpt, Github com pilot.
+
+302
+00:21:31,520 --> 00:21:32,960
+Eu nem sei quais são os outros.
+
+303
+00:21:32,960 --> 00:21:35,760
+Eu sei que tem outros, assim, geradores de código.
+
+304
+00:21:35,760 --> 00:21:40,840
+E claro, a promessa, não sei se é a promessa, mas talvez a expectativa do pessoal dessas
+
+305
+00:21:40,840 --> 00:21:46,120
+empresas é que um dia você chegue lá no chat.gpt, num desses aí, escreve um linguagem
+
+306
+00:21:46,120 --> 00:21:47,120
+natural.
+
+307
+00:21:47,120 --> 00:21:49,520
+Eu quero um programa que faça isso aqui.
+
+308
+00:21:49,520 --> 00:21:54,480
+Já tem algumas ferramentas, você faz um desenho lá, para quem é de fronteira, faz um desenho,
+
+309
+00:21:54,480 --> 00:22:02,480
+está interface e tira uma foto, manda lá para o software e ele já gera aplicação para você.
+
+310
+00:22:02,480 --> 00:22:08,920
+Então, aí é uma pergunta, provocação, reflexão. Será que você está atraindo gente para um
+
+311
+00:22:08,920 --> 00:22:14,160
+área que vai acabar porque não vão ser mais necessárias pessoas programadoras?
+
+312
+00:22:14,160 --> 00:22:21,160
+Sim, eu acredito que não. Acho que a demanda para profissionais na área de FTI não vai deixar de existir.
+
+313
+00:22:21,160 --> 00:22:27,160
+Acho que nem eu estava comentando ali, meu perfil como front-end mudou muito há uns anos.
+
+314
+00:22:27,160 --> 00:22:33,160
+Então agora com inteligência artificial, com geradores de coge, por exemplo, a gente vai ter que se adaptar também.
+
+315
+00:22:33,160 --> 00:22:41,160
+Vai ter que aprender a usar essas ferramentas. A ver, juízo muito como ferramentas que a gente tem que aprender a usar para trazer para o nosso dia a dia.
+
+316
+00:22:41,160 --> 00:22:47,160
+Por exemplo, quando fala e às vezes, por exemplo, chat e PT vai fazer a mesma coisa que um dev junior faz.
+
+317
+00:22:47,160 --> 00:22:52,160
+Se você é um dev junior que só escreve código, vai substituir.
+
+318
+00:22:52,160 --> 00:22:58,160
+Por isso que entra em fortalecer você ser uma pessoa programadora, desenvolvedora, que não foca só no código.
+
+319
+00:22:58,160 --> 00:23:04,160
+Você tem outras habilidades, por exemplo, você tem soft skills, você consegue resolver um problema,
+
+320
+00:23:04,160 --> 00:23:10,160
+você consegue conversar com outras pessoas de outras disciplinas para resolver um problema, para chegar no consenso.
+
+321
+00:23:10,160 --> 00:23:13,160
+e a gente precisa se adaptar com o que está surgindo hoje.
+
+322
+00:23:13,160 --> 00:23:16,160
+Hoje, por exemplo, acho uma maravilha a gente ter o Chia TPP,
+
+323
+00:23:16,160 --> 00:23:19,160
+hoje, por exemplo, esses dias eu estava fazendo uma lendi page lá
+
+324
+00:23:19,160 --> 00:23:21,160
+que eu ia abrir Turma da Mentoria
+
+325
+00:23:21,160 --> 00:23:25,160
+e eu precisava fazer uma funcionalidade que era tipo aquele acordeon,
+
+326
+00:23:25,160 --> 00:23:28,160
+que você clica e expande e projetar em React.
+
+327
+00:23:28,160 --> 00:23:32,160
+E eu falei, "Nossa, vou ficar quebrando da cabeça aqui, fui lá no Chia TPP
+
+328
+00:23:32,160 --> 00:23:34,160
+em cinco minutos e vou fazer um vídeo,
+
+329
+00:23:34,160 --> 00:23:36,160
+vou fazer um vídeo, vou fazer um vídeo,
+
+330
+00:23:36,160 --> 00:23:40,160
+Eu falei "Nossa, vou quebrar da cabeça que fui lá no chatGPT em 5 minutos,
+
+331
+00:23:40,160 --> 00:23:45,160
+se ele escreveu para mim, eu colei em um projeto, pronto, tá funcionando, Liz".
+
+332
+00:23:45,160 --> 00:23:50,160
+Então, acho que é muito isso, a gente saber usar essas ferramentas, trazer para o nosso dia a dia,
+
+333
+00:23:50,160 --> 00:23:54,160
+para a gente otimizar o nosso trabalho e usar o nosso tempo para o que realmente importa,
+
+334
+00:23:54,160 --> 00:23:57,160
+que é resolução de problemas complexos.
+
+335
+00:23:57,160 --> 00:24:01,160
+Duas perguntas rápidas só sobre esse seu exemplo do chatGPT.
+
+336
+00:24:01,160 --> 00:24:04,160
+Primeiro, você usou o chatGPT gratuita ou pago?
+
+337
+00:24:04,160 --> 00:24:12,160
+E o segundo, ele gerou um código pra você e você era capaz de olhar aquele código e dizer "não, realmente ele faz o que eu queria".
+
+338
+00:24:12,160 --> 00:24:14,160
+Sim, exatamente.
+
+339
+00:24:14,160 --> 00:24:21,160
+É uma coisa que as pessoas não podem se enganar, achar que "ah, não, você tem que ser capaz de uma vez que o código esteja pronto,
+
+340
+00:24:21,160 --> 00:24:28,160
+no mínimo entender aquilo ali ou, na pior das vezes, pelo menos testar e dizer "ah, realmente faz o que eu queria".
+
+341
+00:24:28,160 --> 00:24:32,160
+Exatamente. E saber onde colar aquele código, né? Tem várias coisas.
+
+342
+00:24:32,160 --> 00:24:36,720
+E se não funcionar, saber entender, tem várias detalhes.
+
+343
+00:24:36,720 --> 00:24:40,960
+Isso é bem importante, se não funcionar, saber modificar.
+
+344
+00:24:40,960 --> 00:24:48,760
+Então é o que você disse, saber utilizar o chat GPT, não achar que é algo pronto e finalizado.
+
+345
+00:24:48,760 --> 00:24:54,120
+Sim, e também tem várias iniciativas agora também, se der uma pesquisada no Google,
+
+346
+00:24:54,120 --> 00:24:57,520
+"Ah, como aprender programação com chat GPT?"
+
+347
+00:24:57,520 --> 00:25:01,640
+Então você pode usar lá para ele te ajudar a escrever um roadmap de estudo,
+
+348
+00:25:01,640 --> 00:25:03,920
+ou por exemplo, "Ah, eu tenho que aprender Java.
+
+349
+00:25:03,920 --> 00:25:06,200
+Qual são os conceitos básicos de Java?
+
+350
+00:25:06,200 --> 00:25:08,320
+Ele vai te ajudar a estudar."
+
+351
+00:25:08,320 --> 00:25:11,040
+Então eu acho que se trazer essas ferramentas para o teu dia a dia,
+
+352
+00:25:11,040 --> 00:25:14,160
+não só com o texto de trabalho, mas também de estudo,
+
+353
+00:25:14,160 --> 00:25:16,760
+é superválido, é um superganho para a gente que está na área.
+
+354
+00:25:16,760 --> 00:25:21,640
+Eu acho que nunca houve uma época tão legal para você estar no mercado de TI
+
+355
+00:25:21,640 --> 00:25:23,680
+e otimizar o teu tempo ali para o teu exemplo.
+
+356
+00:25:23,680 --> 00:25:26,480
+Quando eu comecei, eu aprendi com o livro, sabe?
+
+357
+00:25:26,480 --> 00:25:32,480
+E não tinham tanto essa variedade de cursos, de materiais para você estudar quanto hoje em dia.
+
+358
+00:25:32,480 --> 00:25:37,480
+Então, acho que é uma época muito legal para quem está, inclusive, querendo aprender programação,
+
+359
+00:25:37,480 --> 00:25:41,480
+começando uma área, acho que tem que olhar para o lado bom das coisas também.
+
+360
+00:25:41,480 --> 00:25:48,480
+É só para complementar. Eu usei isso hoje, um aluno, eu dou aula de lógica para a computação,
+
+361
+00:25:48,480 --> 00:25:54,480
+aí eu tenho o meu aluno e pergunto, qual é a definição de sistemas de adutivos refitacionais e não refitacionais?
+
+362
+00:25:54,480 --> 00:26:00,960
+por que ele precisava da minha definição? Porque eu passo para eles leirem um livro,
+
+363
+00:26:00,960 --> 00:26:04,920
+o livro está no site da AutoFPDR e o site hoje estava fora do ar.
+
+364
+00:26:04,920 --> 00:26:11,160
+Eu disse, deixa o teste estar aqui, deixa eu ver o que é que o chat de GPT me diz.
+
+365
+00:26:11,160 --> 00:26:16,120
+E ele deu uma definição ótima, tem uma coisinha só que eu acrescentei lá, mas não é que
+
+366
+00:26:16,120 --> 00:26:22,480
+estava errado, dentro do contexto do que eu ensinei, o exemplo melhor seria um exemplo que eu dei,
+
+367
+00:26:22,480 --> 00:26:27,920
+que ele deu. Aí eu disse pra mundo, ó, tá aqui, ó, a resposta que ele deu, eu só trocaria isso aqui,
+
+368
+00:26:27,920 --> 00:26:34,120
+e ele, eu acho que ele vai, é o aluno que tá se esforçando bem, eu acho que ele vai bem nessa prova,
+
+369
+00:26:34,120 --> 00:26:35,520
+prova vai ser depois de amanhã.
+
+370
+00:26:35,520 --> 00:26:42,840
+Bem, pra continuar, uma pergunta que a gente sempre faz também para as nossas entrevistadas,
+
+371
+00:26:42,840 --> 00:26:48,720
+é o que você diria para meninas e mulheres que estejam pensando em seguir carreira na computação?
+
+372
+00:26:48,720 --> 00:26:54,480
+E aí a gente pode pensar também naquelas mulheres que estão mudando de carreira, né?
+
+373
+00:26:54,480 --> 00:26:59,160
+Que, de repente, essas também te procuram no Techian.
+
+374
+00:26:59,160 --> 00:27:03,480
+Sim, legal, quem está em tração de carreira e tudo mais.
+
+375
+00:27:03,480 --> 00:27:10,840
+Eu acredito que hoje é um momento interessante para quem quer entrar, mulheres, né?
+
+376
+00:27:10,840 --> 00:27:15,440
+Pessoas que se identificam como mulheres e tal, querem entrar no mercado,
+
+377
+00:27:15,440 --> 00:27:21,840
+Porque existem iniciativas para ajudar nesse momento de entrada de mercado.
+
+378
+00:27:21,840 --> 00:27:25,840
+Acredito que na pandemia estava mais forte ainda, agora deu uma segurada,
+
+379
+00:27:25,840 --> 00:27:31,440
+acho que no geral o mercado de tenta não está contratando tanto quanto dois anos atrás, por exemplo.
+
+380
+00:27:31,440 --> 00:27:37,840
+Mas ainda assim você vê muitos programas de incentivo, programas de diversidade para a contratação,
+
+381
+00:27:37,840 --> 00:27:43,640
+para a formação de mulheres. Então, primeira dica para mulheres que querem entrar na área de temfique,
+
+382
+00:27:43,640 --> 00:27:46,640
+de olho nesses programas, dessas oportunidades, né?
+
+383
+00:27:46,640 --> 00:27:50,640
+Faça o uso disso, porque são iniciativas muito legais,
+
+384
+00:27:50,640 --> 00:27:52,640
+e também mulheres que já estão no mercado, né?
+
+385
+00:27:52,640 --> 00:27:55,640
+Observem muito o ambiente onde você está trabalhando
+
+386
+00:27:55,640 --> 00:27:58,640
+para ver se a empresa onde você está tem espaço
+
+387
+00:27:58,640 --> 00:28:00,640
+para discussões de diversidade, né?
+
+388
+00:28:00,640 --> 00:28:03,640
+Tem iniciativas para falar sobre o assunto, né?
+
+389
+00:28:03,640 --> 00:28:08,640
+Entenda se você se sente segura trabalhando no lugar onde você está, né?
+
+390
+00:28:08,640 --> 00:28:11,640
+E se você não se sente tão segura, tente entender por quê, né?
+
+391
+00:28:11,640 --> 00:28:18,240
+e os que ajudam o pessoal de people, de RH, enfim, para trazer essa discussão,
+
+392
+00:28:18,240 --> 00:28:22,440
+para que cada vez mais a gente consiga construir esses ambientes saudáveis para
+
+393
+00:28:22,440 --> 00:28:29,280
+nós mulheres. Eu acho que a gente como mulher não é só esperar que esteja tudo pronto quando
+
+394
+00:28:29,280 --> 00:28:33,720
+a gente entra numa empresa, não, já tem que estar tudo certinho, tudo preparado ali em relação
+
+395
+00:28:33,720 --> 00:28:38,280
+à diversidade. Acho que a gente que é mulher, para quem já está na área, a gente tem esse papel também
+
+396
+00:28:38,280 --> 00:28:41,480
+de ajudar a criar esse ambiente saudável também, né?
+
+397
+00:28:41,480 --> 00:28:42,780
+Por exemplo, você é mulher,
+
+398
+00:28:42,780 --> 00:28:44,680
+tá uma empresa que às vezes não tem
+
+399
+00:28:44,680 --> 00:28:46,680
+muitas iniciativas de diversidade, né?
+
+400
+00:28:46,680 --> 00:28:48,680
+Entrou uma outra mulher na sua equipe,
+
+401
+00:28:48,680 --> 00:28:50,680
+que você vai fazer "puxa pro seu lado,
+
+402
+00:28:50,680 --> 00:28:52,680
+chega aqui, faz essa amizade,
+
+403
+00:28:52,680 --> 00:28:56,680
+ajuda ali a pessoa, seja essa pessoa
+
+404
+00:28:56,680 --> 00:28:58,680
+que você gostaria de ter tido lá
+
+405
+00:28:58,680 --> 00:28:59,680
+quando você tava começando, né?
+
+406
+00:28:59,680 --> 00:29:01,680
+Eu sempre vejo muito dessa forma, assim.
+
+407
+00:29:01,680 --> 00:29:04,680
+Então, eu acho que esse principal recado,
+
+408
+00:29:04,680 --> 00:29:06,680
+assim, pra quem tá entrando na área,
+
+409
+00:29:06,680 --> 00:29:10,580
+E não tenha medo, tenha coragem, eu acho que,
+
+410
+00:29:10,580 --> 00:29:15,320
+que nem eu falei no começo ali, a gente nunca vai estar em uma situação sempre sendo favorável,
+
+411
+00:29:15,320 --> 00:29:20,640
+a gente quer mulher na área, a gente é corajosa, a gente tem que ser corajosa diariamente ali,
+
+412
+00:29:20,640 --> 00:29:26,480
+e é uma construção diária aí para a gente construir as nossas carreiras e também.
+
+413
+00:29:26,480 --> 00:29:30,220
+Muito legal.
+
+414
+00:29:30,220 --> 00:29:34,580
+E agora a gente chega no momento que é momento de indicações,
+
+415
+00:29:34,580 --> 00:29:41,780
+A gente deixa o espaço aqui se você quiser indicar um livro, uma série, filme, quadrinho, qualquer coisa.
+
+416
+00:29:41,780 --> 00:29:45,560
+Qualquer assunto também não precisa ser só na sua área.
+
+417
+00:29:45,560 --> 00:29:48,860
+Aqui para os ouvintes.
+
+418
+00:29:48,860 --> 00:29:50,020
+Legal.
+
+419
+00:29:50,020 --> 00:29:56,720
+Tem um livro que eu gosto bastante, que é o Clube da Luta Feminista.
+
+420
+00:29:56,720 --> 00:30:02,020
+Que é um livro, ele é branco, roca, pinha, rosa. Eu não tenho ele físico, eu tenho ele no quinto, eu só.
+
+421
+00:30:02,020 --> 00:30:04,320
+que ele foi escrito por uma jornalista,
+
+422
+00:30:04,320 --> 00:30:08,680
+e ela conta que ela se reunia com várias mulheres,
+
+423
+00:30:08,680 --> 00:30:10,440
+jornalistas também,
+
+424
+00:30:10,440 --> 00:30:12,940
+para se reunir mensalmente,
+
+425
+00:30:12,940 --> 00:30:16,280
+para falar sobre situações que aconteciam no trabalho,
+
+426
+00:30:16,280 --> 00:30:19,780
+situações porque às vezes acabavam sofrendo por ser mulheres,
+
+427
+00:30:19,780 --> 00:30:23,380
+que a Mária é muito predominantemente masculina também.
+
+428
+00:30:23,380 --> 00:30:27,880
+E aí, deles começaram a chamar isso de clube da luta feminista.
+
+429
+00:30:27,880 --> 00:30:31,860
+E aí, durante o livro, ela começa a explicar sobre vários conceitos,
+
+430
+00:30:31,860 --> 00:30:35,000
+"mainsplaining", essas coisas assim,
+
+431
+00:30:35,000 --> 00:30:39,760
+e dando exemplos de situações que você pode passar
+
+432
+00:30:39,760 --> 00:30:45,840
+e como que você consegue responder aquilo de forma educada, sem militar, sem parecer...
+
+433
+00:30:45,840 --> 00:30:52,040
+que as pessoas acabam julgando, então, como é que você mantém a classe lida com esse tipo de situação?
+
+434
+00:30:52,040 --> 00:30:55,800
+Então, acho que é um livro muito legal também.
+
+435
+00:30:55,800 --> 00:31:02,440
+E tem um outro livro, deixa eu lembrar o novo, que é da Rafa Brits, que se chama "Síndrome da Impostora".
+
+436
+00:31:02,440 --> 00:31:05,800
+É um livro, nossa, muito levinho, assim, rapidinho de ler.
+
+437
+00:31:05,800 --> 00:31:13,240
+E a Rafa Brits, ela fala muito sobre o quanto ela descobriu ao longo do tempo,
+
+438
+00:31:13,240 --> 00:31:17,040
+que ela sofria com síndrome da impostora, que ela não sabia o que era aquilo.
+
+439
+00:31:17,040 --> 00:31:20,240
+E eu lendo esse livro, olhei esse livro, eu te fazem dois ou três anos.
+
+440
+00:31:20,240 --> 00:31:24,040
+Eu lendo esse livro, eu achava que eu nunca tinha sofrido esse livro da impostora.
+
+441
+00:31:24,040 --> 00:31:26,280
+Eu falava "nã, que bota, tranquilo"
+
+442
+00:31:26,280 --> 00:31:29,540
+E aí eu comecei a ler o livro e falei "Opa, não, é bem assim"
+
+443
+00:31:29,540 --> 00:31:32,040
+Então acho que é uma leitura muito legal, assim
+
+444
+00:31:32,040 --> 00:31:36,540
+O livro é muito voltado para mulheres, mas eu acho que todo mundo pode ler
+
+445
+00:31:36,540 --> 00:31:38,040
+A mulher não se identificar mais
+
+446
+00:31:38,040 --> 00:31:43,040
+Mas traz muitas situações do dia a dia, assim, que você acaba percebendo que, cara
+
+447
+00:31:43,040 --> 00:31:49,040
+Acho que dá para olhar com mais carinho para essa situação, para esse tipo de reação que às vezes a pessoa tem
+
+448
+00:31:49,040 --> 00:31:53,040
+Então acho que esses dois livros aí são muito legais também
+
+449
+00:31:53,040 --> 00:32:03,040
+Então, para as pessoas se encontrarem, né, é só ir lá no techannicom2nstechth.com.br
+
+450
+00:32:03,040 --> 00:32:10,040
+Eu acho que lá tem os links, seu link, LinkedIn, GitHub, Instagram, Youtube, é isso, né?
+
+451
+00:32:10,040 --> 00:32:15,040
+Isso mesmo, vai lá no meu site ou segue direto lá no Instagram @tecannicom2
+
+452
+00:32:15,040 --> 00:32:20,040
+Que lá também vai ter o link do meu link edim, tudo certinho
+
+453
+00:32:20,040 --> 00:32:25,320
+E aí, quem quiser ficar à vontade de mandar mensagem também vai ser muito bem-vindo para trocar ideias.
+
+454
+00:32:25,320 --> 00:32:35,520
+Certo, então, fiquei muito feliz de entrevistar você e acho que mais uma oportunidade de estar aí,
+
+455
+00:32:35,520 --> 00:32:42,120
+conversando com você, né? E agradeço muito a sua presença aqui.
+
+456
+00:32:42,120 --> 00:32:47,120
+Assim, a gente chega ao fim de mais um episódio do Emilhas Podcast.
+
+457
+00:32:47,120 --> 00:32:54,120
+E se você quiser agradecer a alguém, mandar um abraço para alguém, por favor, fica à vontade.
+
+458
+00:32:54,120 --> 00:32:55,120
+Ah, tá bom.
+
+459
+00:32:55,120 --> 00:33:00,120
+Ah, eu não tenho que vergonha para quem que eu vou mandar os abraços.
+
+460
+00:33:00,120 --> 00:33:04,120
+Ah, eu vou aproveitar mandar um abraço para o professor Amarilha, que foi minha orientadora e mestrado,
+
+461
+00:33:04,120 --> 00:33:06,120
+faz anos que eu não falo com ela.
+
+462
+00:33:06,120 --> 00:33:13,120
+Inclusive, eu ia mandar uma mensagem para ela porque eu achei que a gravação ia ser presencial,
+
+463
+00:33:13,120 --> 00:33:19,120
+ela disse "pô, já passo lá, dou um oi para ela" e tal, mas acho que qualquer momento mando um oi para ela também,
+
+464
+00:33:19,120 --> 00:33:24,120
+então eu queria deixar um abraço que eu agradecimento para ela, ela foi uma pessoa que me inspirou muito durante muito tempo,
+
+465
+00:33:24,120 --> 00:33:32,120
+eu pensei em seguir carreira acadêmica durante bastante tempo, eu me inspirava muito nela, por outros motivos acabei não seguindo a área acadêmica aí,
+
+466
+00:33:32,120 --> 00:33:37,120
+Mas acho que era uma figura muito forte, uma referência muito legal na área também.
+
+467
+00:33:37,120 --> 00:33:42,120
+E deixa eu ver o que mais. Ah, não acredito que é isso.
+
+468
+00:33:42,120 --> 00:33:50,120
+Então tá certo, muito obrigado Anne, obrigado a todas e a todos que nos escutaram, o que nos assistiram.
+
+469
+00:33:50,120 --> 00:33:59,120
+Nós publicamos nossos episódios nas plataformas de áudio, como Spotify, Apple Podcasts e no YouTube, com vídeo.
+
+470
+00:33:59,120 --> 00:34:03,640
+Então, obrigado a todos e a todas e até o próximo episódio do Emilia's Podcast,
+
+471
+00:34:03,640 --> 00:34:04,840
+"Mulheres na Computação".
+
+472
+00:34:04,840 --> 00:34:06,840
+[Som de futebol]
+
+473
+00:34:06,840 --> 00:34:12,840
+[Música]
+
