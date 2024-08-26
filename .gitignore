@@ -1,0 +1,5 @@
+langchain/csm
+csm*
+**/__pycache__
+*.txt
+*.pdf
