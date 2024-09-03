@@ -3,7 +3,7 @@ from langchain.prompts import PromptTemplate
 class SummarizationRefinePrompts:
 
     @staticmethod
-    def refine_prompt_default():
+    def refine_prompt_default() -> str:
         return PromptTemplate.from_template(
         """
 Sua tarefa é produzir um resumo final.
@@ -17,7 +17,7 @@ Se o contexto não for útil, retorne o resumo original.
 """)
 
     @staticmethod
-    def question_prompt_default():
+    def question_prompt_default() -> str:
         return PromptTemplate.from_template(
         """
 Escreva um resumo conciso do seguinte texto:
@@ -30,7 +30,7 @@ RESUMO CONCISO:
 """)
     
     @staticmethod
-    def refine_prompt_transcript():
+    def refine_prompt_transcript() -> str:
         return PromptTemplate.from_template(
         """
 Sua tarefa é produzir um resumo final de uma reunião.

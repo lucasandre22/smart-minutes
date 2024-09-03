@@ -4,7 +4,14 @@ import math
 ENCODING = tiktoken.get_encoding("cl100k_base")
 
 def token_len(input: str) -> int:
-    """Get token length for openai"""
+    """Get token length
+
+    Args:
+        input (str): The text to get token length
+
+    Returns:
+        int: The input's token length
+    """
     return len(ENCODING.encode(input))
 
 def chunk(input: str, chunk_size=3000) -> list:

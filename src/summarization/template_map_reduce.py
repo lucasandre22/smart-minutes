@@ -3,7 +3,7 @@ from langchain.prompts import PromptTemplate
 class SummarizationMapReducePrompts:
 
     @staticmethod
-    def map_prompt_default():
+    def map_prompt_default() -> str:
         return PromptTemplate.from_template(
         """
 Escreva um resumo conciso do seguinte texto:
@@ -14,7 +14,7 @@ RESUMO CONCISO:
 """)
         
     @staticmethod
-    def combine_prompt_default():
+    def combine_prompt_default() -> str:
         return PromptTemplate.from_template(
         """
 Escreva um resumo conciso do seguinte texto:
