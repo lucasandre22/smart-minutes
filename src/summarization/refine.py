@@ -30,7 +30,8 @@ class SummarizationRefine(Summarization):
             )
         )
         self.llm = llm
-        
+
+    #TODO: organize the summary in a timeline
     def organize_summary():
         pass
 

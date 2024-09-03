@@ -25,24 +25,19 @@ class SummarizationAlignmentVerdict(BaseModel):
     verdict: str
     reason: str = Field(default=None)
 
-
 class SummarizationCoverageVerdict(BaseModel):
     summary_verdict: str
     original_verdict: str
     question: str = Field(default=None)
 
-
 class Verdict(BaseModel):
     verdicts: List[SummarizationAlignmentVerdict]
-
 
 class Questions(BaseModel):
     questions: List[str]
 
-
 class Answers(BaseModel):
     answers: List[str]
-
 
 class Answers(BaseModel):
     answers: List[str]
