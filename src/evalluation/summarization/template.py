@@ -1,6 +1,6 @@
 class MeetingSummarizationTemplate:
     @staticmethod
-    def generate_reason(contradictions, redundancies, questions, score):
+    def generate_reason(contradictions, redundancies, questions, score) -> str:
         return f"""You will be given the following: 1) information in the summary contradicting the original text, 2) extra information in the summary not mentioned in the original text, 3) [Optional] questions cannot be answered by the summary. Your task is to explain the quality of this summarization task.
 Given the summarization score, which is a 0-1 score indicating how good the summary is to the original text (higher the better), CONCISELY summarize the provided information to justify the score.  
 
@@ -26,7 +26,7 @@ Extra Information not mentioned in the original text:
 """
 
     @staticmethod
-    def generate_answers(questions, text):
+    def generate_answers(questions, text) -> str:
         return f"""Based on the list of close-ended 'yes' or 'no' questions, generate a JSON with key 'answers', which is a list of strings that determines whether the provided text contains sufficient information to answer EACH question.
 Answers should STRICTLY be either 'yes' or 'no'.
 Answer 'no' if the provided text does not contain enough information to answer the question.
@@ -54,7 +54,7 @@ JSON:
 """
 
     @staticmethod
-    def generate_questions(text, n):
+    def generate_questions(text, n) -> str:
         return f"""Based on the given text, generate {n} closed-ended questions that can be answered with either a 'yes' or 'no'. 
 The questions generated should ALWAYS result in a 'yes' based on the given text. 
         
@@ -70,7 +70,7 @@ JSON:
 """
 
     @staticmethod
-    def generate_alignment_verdicts(orignal_text, summary_claims):
+    def generate_alignment_verdicts(orignal_text, summary_claims) -> str:
         return f"""Based on the given summary claims, which is a list of strings, generate a list of JSON objects to indicate whether EACH piece of info contradicts any facts in the original text. The JSON will have 2 fields: 'verdict' and 'reason'.
 The 'verdict' key should STRICTLY be either 'yes', 'no', or 'idk', which states whether the given summary claim agrees with the original text. 
 Provide a 'reason' ONLY if the answer is 'no' OR 'idk'. 
@@ -124,8 +124,8 @@ JSON:
 """
 
     @staticmethod
-    def generate_claims(text):
-        return f"""Based on the given text, please generate a comprehensive list of FACTUAL claims that can inferred from the provided text.
+    def generate_claims(text, maximum_claims) -> str:
+        return f"""Based on the given text, please generate a comprehensive list of {maximum_claims} FACTUAL claims that can inferred from the provided text.
 
 Example:
 Example Text: 
@@ -152,7 +152,7 @@ Text:
 JSON:
 """
     @staticmethod
-    def generate_claims_for_chapter(chapter_text, maximum_claims):
+    def generate_claims_for_chapter(chapter_text, maximum_claims) -> str:
         return f"""Based on the given text, please generate a comprehensive list of {maximum_claims} FACTUAL claims that can inferred from the provided text.
 
 Example:

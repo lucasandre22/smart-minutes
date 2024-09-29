@@ -1,4 +1,5 @@
 from langchain_community.llms import Ollama
+from langchain_core.language_models.llms import BaseLLM
 from deepeval.models import DeepEvalBaseLLM
 
 class OllamaEvalModel(DeepEvalBaseLLM):
@@ -10,7 +11,7 @@ class OllamaEvalModel(DeepEvalBaseLLM):
             #callback_manager=CallbackManager([StreamingStdOutCallbackHandler()])
         )
 
-    def load_model(self):
+    def load_model(self)-> Type[BaseLLM]:
         return self.model
 
     def generate(self, prompt: str) -> str:
@@ -20,5 +21,5 @@ class OllamaEvalModel(DeepEvalBaseLLM):
     async def a_generate(self, prompt: str) -> str:
         return self.generate(prompt)
 
-    def get_model_name(self):
+    def get_model_name(self) -> str:
         return "OllamaEvalModel"

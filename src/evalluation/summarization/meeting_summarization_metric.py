@@ -6,6 +6,7 @@ from typing import List
 from enum import Enum
 from dataclasses import dataclass
 from .template import MeetingSummarizationTemplate
+from langchain_core.documents import Document
 from deepeval.metrics.utils import (
     construct_verbose_logs,
     trimAndLoadJson
@@ -30,21 +31,6 @@ class SummarizationCoverageVerdict(BaseModel):
     original_verdict: str
     question: str = Field(default=None)
 
-class Verdict(BaseModel):
-    verdicts: List[SummarizationAlignmentVerdict]
-
-class Questions(BaseModel):
-    questions: List[str]
-
-class Answers(BaseModel):
-    answers: List[str]
-
-class Answers(BaseModel):
-    answers: List[str]
-
-class Reason(BaseModel):
-    reason: str
-
 def get_or_create_event_loop() -> asyncio.AbstractEventLoop:
     try:
         loop = asyncio.get_event_loop()
@@ -61,7 +47,6 @@ def get_or_create_event_loop() -> asyncio.AbstractEventLoop:
         asyncio.set_event_loop(loop)
     return loop
 
-
 class MeetingSummarizationMetric():
     def __init__(
         self,
@@ -73,6 +58,7 @@ class MeetingSummarizationMetric():
         async_mode=True,
         strict_mode: bool = False,
         verbose_mode: bool = False,
+        maximum_clams_from_original_text: int = 60
     ):
         self.threshold = 1 if strict_mode else threshold
         self.model = model
@@ -90,6 +76,7 @@ class MeetingSummarizationMetric():
         self.verbose_mode = verbose_mode
         self.start_time = -1
         self.total_time_to_measure = -1
+        self.maximum_clams_from_original_text = maximum_clams_from_original_text
 
     def measure(self, test_case: LLMTestCase) -> float:
         self.start_time = time.time()
@@ -99,9 +86,9 @@ class MeetingSummarizationMetric():
                 self.a_measure(test_case, _show_indicator=False)
             )
         else:
+            #
             if isinstance(test_case.input, list):
-                maximum_truths_from_original_text = 60
-                maximum_claims_per_chapter = int(maximum_truths_from_original_text/len(test_case.input))
+                maximum_claims_per_chapter = int(self.maximum_clams_from_original_text/len(test_case.input))
                 self.truths_from_original_text: List[str] = self._generate_claims_from_chapters(
                     test_case.input, maximum_claims_per_chapter
                 )
@@ -438,12 +425,12 @@ class MeetingSummarizationMetric():
         return data["claims"]
 
     def _generate_claims(self, text: str) -> List[str]:
-        prompt = MeetingSummarizationTemplate.generate_claims(text=text)
+        prompt = MeetingSummarizationTemplate.generate_claims(text=text, maximum_claims=self.maximum_clams_from_original_text)
         res = self.model.generate(prompt)
         data = trimAndLoadJson(res, self)
         return data["claims"]
 
-    def _generate_claims_from_chapters(self, text: List, maximum_claims_per_chapter: int) -> List[str]:
+    def _generate_claims_from_chapters(self, text: List[Document], maximum_claims_per_chapter: int) -> List[str]:
         result = []
         for i in range(0, len(text)):
             prompt = MeetingSummarizationTemplate.generate_claims_for_chapter(
