@@ -1,0 +1,44 @@
+
+.sidebarIcon {
+    font-size: 2rem;
+}
+.nav-link:hover {
+    background-color: #f6c500b8;
+}
+.nav-link i, .nav-link p {
+    color: black;
+    font-size: 120%;
+}
+.sidebarColumn {
+    width: 4.5rem;
+    margin-top: 2rem;
+}
+.navActive .icon {
+    background-color: #f6c50068;
+    border-radius: 8px;
+    width: 80%;
+    margin-left: 10%;
+}
+.sidebar .nav-item {
+    padding: 0;
+}
+.sidebar .nav-link {
+    padding: 0px;
+}
+.promo-card {
+    background-color: #f6c50068;
+    border-radius: 8px;
+}
+.promo-card:hover {
+    background-color: #f6c500b8;
+    cursor: pointer;
+}
+.mt-center {
+    margin-top: 15rem;
+}
+h1 {
+    font-size: 3.5rem;
+}
+footer a {
+    border-radius: 8px;
+}
