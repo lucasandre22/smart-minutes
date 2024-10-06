@@ -2,7 +2,7 @@ from ..utils import chunk
 from langchain_core.documents import Document
 from langchain.chains.combine_documents.base import BaseCombineDocumentsChain
 
-class FollowUp():
+class Minutes():
     def __init__(self, chain):
         self.chain: BaseCombineDocumentsChain = chain
     

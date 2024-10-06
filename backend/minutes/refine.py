@@ -3,7 +3,7 @@ from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain_community.llms import Ollama
 from backend.llms.ollama.ollama_llm import Ollamallm
-from .minutes import FollowUp
+from .minutes import Minutes
 from .template_refine import *
 
 """Refine chain.
@@ -12,14 +12,14 @@ The refine documents chain constructs a response by looping over the input docum
 and iteratively updating its answer.
 """
 
-class FollowUpRefine(FollowUp):
+class MinutesRefine(Minutes):
     """Summarization that uses refine method:
     Splits up a document or text into chunks, update a rolling summary be iterating over the documents in a sequence.
     """
     def __init__(self, llm: Ollamallm,
-                 refine_prompt=FollowUpRefinePrompts.refine_prompt_default(),
-                 question_prompt=FollowUpRefinePrompts.question_prompt_default()):
-        FollowUp.__init__(self,
+                 refine_prompt=MinutesRefinePrompts.refine_prompt_default(),
+                 question_prompt=MinutesRefinePrompts.question_prompt_default()):
+        Minutes.__init__(self,
             load_summarize_chain(
                 llm, 
                 chain_type="refine", 
@@ -33,7 +33,7 @@ class FollowUpRefine(FollowUp):
 
 
     def generate_final_follow_up(self, follow_up):
-        prompt = FollowUpRefinePrompts.refine_prompt_default(follow_up)
+        prompt = MinutesRefinePrompts.refine_prompt_default(follow_up)
         return self.llm.invoke(prompt)
 
 if __name__ == "__main__":
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     )
     file = ".\\documents\\ppgca\\ppgca_.txt"
 
-    summarization_refine = FollowUpRefine(LLM)
+    summarization_refine = MinutesRefine(LLM)
     docs = summarization_refine.chunk_file_into_documents(file)
 
     result = summarization_refine.invoke(docs)

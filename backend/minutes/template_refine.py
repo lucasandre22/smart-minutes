@@ -1,6 +1,6 @@
 from langchain.prompts import PromptTemplate
 
-class FollowUpRefinePrompts:
+class MinutesRefinePrompts:
 
     @staticmethod
     def refine_prompt_default() -> str:
