@@ -1,5 +1,5 @@
 import webvtt
-vtt = webvtt.read('D:\\Git\\tcc\\documents\\ppgca\\Reunião do Colegiado do PPGCA (2024-05-29 10_09 GMT-3)-pt-1.vtt')
+vtt = webvtt.read('D:\\Git\\tcc\\backend\\transcriptions\\Reunião do Colegiado do PPGCA – 2024_09_30 13_22 BRT – Recording-pt-1.vtt')
 transcript = ""
 
 lines = []
@@ -25,5 +25,5 @@ for line in lines:
     previous = line
 
 print(transcript)
-with open('transcript_talkers.txt', 'w', encoding='utf-8') as file:
+with open('ppgca_.txt', 'w', encoding='utf-8') as file:
     file.write(transcript)

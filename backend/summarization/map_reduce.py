@@ -24,7 +24,7 @@ class SummarizationMapReduce(Summarization):
             load_summarize_chain(
                 llm,
                 chain_type="map_reduce",
-                map_prompt = map_prompt,
+                map_prompt=map_prompt,
                 combine_prompt=combine_prompt,
                 combine_document_variable_name="text",
                 map_reduce_document_variable_name="text"

@@ -1,4 +1,4 @@
-from .utils import chunk
+from ..utils import chunk
 from langchain_core.documents import Document
 from langchain.chains.combine_documents.base import BaseCombineDocumentsChain
 

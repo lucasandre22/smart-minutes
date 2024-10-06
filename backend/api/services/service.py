@@ -1,25 +1,24 @@
-import subprocess
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain_community.llms import Ollama
-from src.summarization.refine import SummarizationRefine
 
-from src.evalluation.summarization.meeting_summarization_metric import LLMTestCase, MeetingSummarizationMetric
-from src.evalluation.ollama_eval_model import OllamaEvalModel
-from src.evalluation.summarization.template import *
+from ...summarization.refine import SummarizationRefine
+
+from ...evalluation.summarization.meeting_summarization_metric import LLMTestCase, MeetingSummarizationMetric
+from ...evalluation.ollama_eval_model import OllamaEvalModel
+from ...evalluation.summarization.template import *
 import requests
 from pathlib import Path
 
+OLLAMA_API_ADDRESS = "http://localhost:11434"
+TRANSCRIPTIONS_DIRECTORY = "../../transcriptions"
+DOCUMENTS_DIRECTORY = "../../documents"
 
 class Service():
-    def __init__(self):
-        self.ollama_api = "http://localhost:11434"
-        self.transcriptions_directory = "./transcriptions"
-        self.documents_directory = "./documents"
-        pass
-    
-    def get_models(self):
-        response = requests.get(f"{self.ollama_api}/api/tags")
+
+    @staticmethod
+    def get_models():
+        response = requests.get(f"{OLLAMA_API_ADDRESS}/api/tags")
 
         if response.status_code == 200:
             models_array = []
@@ -29,18 +28,22 @@ class Service():
         else:
             print(f"Failed to retrieve tags: {response.status_code}")
             return []
-    
-    def list_transcription_files(self):
-        return self.list_files(self.transcriptions_directory)
-    
-    def list_document_files(self):
-        return self.list_files(self.documents_directory)
-        
-    def list_files(self, directory):
+
+    @staticmethod
+    def list_transcriptions():
+        return Service.list_files(TRANSCRIPTIONS_DIRECTORY)
+
+    @staticmethod
+    def list_documents(self):
+        return Service.list_files(self.DOCUMENTS_DIRECTORY)
+
+    @staticmethod
+    def list_files(directory):
         path = Path(directory)
         return [str(file) for file in path.rglob('*') if file.is_file()]
-        
-    def send(self, configuration):
+
+    @staticmethod
+    def send(configuration):
         model=configuration["modelSelected"]
         temperature=configuration["modelConfiguration"]["temperature"]
         print(model, temperature)
