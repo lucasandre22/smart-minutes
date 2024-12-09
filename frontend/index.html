@@ -7,7 +7,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="stylesheet.css">
+
+    
+    <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -21,7 +23,7 @@
                     </a>
                     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                         <li class="nav-item">
-                            <a href="#" class="nav-link py-3 navActive" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                            <a id="navbarHome" href="index.html" onclick="loadHomePage(event, 'home.html')" class="nav-link py-3 navActive" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
                                 <div class="icon">
                                     <i class="bi bi-house" style="font-size: 2rem;"></i>
                                 </div>
@@ -29,39 +31,39 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                            <a id="navbarTranscripts" href="transcripts.html" onclick="loadTranscriptsPage(event, 'transcripts.html')" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
                                 <div class="icon">
                                     <i class="bi bi-folder2" style="font-size: 1.5rem;"></i>
                                 </div>
-                                <p>Transcriptions</p>
-                            </a>
-                        </li>
-                        <li class="nav-item"></li>
-                            <a href="summarize.html" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
-                                <div class="icon">
-                                    <i class="bi bi-stars" style="font-size: 1.5rem;"></i>
-                                </div>
-                                <p>Summarize</p>
+                                <p>Transcripts</p>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
+                            <a id="navbarDocuments" href="documents.html" onclick="loadDocumentsPage(event, 'documents.html')" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
                                 <div class="icon">
                                     <i class="bi bi-file-earmark-pdf" style="font-size: 1.5rem;"></i>
                                 </div>
                                 <p>Documents</p>
                             </a>
                         </li>
+                        <li class="nav-item"></li>
+                            <a id="navbarSummarize" href="summarize_home.html" onclick="loadSummarizeHomePage(event, 'summarize_home.html')" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
+                                <div class="icon">
+                                    <i class="bi bi-stars" style="font-size: 1.5rem;"></i>
+                                </div>
+                                <p>Summarize+</p>
+                            </a>
+                        </li>
                         <li>
-                        <a href="#" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products">
+                        <a id="navbarProcessedFiles" href="processed_files.html" onclick="loadProcessedFilesPage(event, 'processed_files.html')" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products">
                             <div class="icon">
-                                <i class="bi bi-chat-right-text" style="font-size: 1.5rem;"></i>
+                                <i class="bi bi-file-earmark-text" style="font-size: 1.5rem;"></i>
                             </div>
-                            <p>Chat</p>
+                            <p>Processed files</p>
                         </a>
                         </li>
                         <li>
-                        <a href="#" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
+                        <a id="navbarSettings" href="documents.html" onclick="loadSettingsPage(event, 'settings.html')" class="nav-link py-3" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
                             <div class="icon">
                                 <i class="bi bi-gear" style="font-size: 1.5rem;"></i>
                             </div>
@@ -74,9 +76,7 @@
                                 <i class="bi bi-info-circle"></i>
                             </a>
                                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Download documentation</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#">Design inspired by gpt4all</a></li>
                                 </ul>
@@ -86,13 +86,13 @@
                 </div>
             </div>
 
-            <div class="col-md-10">
+            <div class="col-md-10" id="content">
                 <div class="mt-center">
                     <div class="container d-flex justify-content-center align-items-center">
-                        <h1>Welcome</h1>
+                        <h1>Welcome!</h1>
                     </div>
                     <div class="container d-flex justify-content-center align-items-center">
-                        <p>choose an action to start</p>
+                        <p>Choose an action to start</p>
                     </div>
                 </div>
                 
@@ -101,13 +101,13 @@
                 <div class="container d-flex justify-content-center align-items-center">
                     <div class="row w-100">
                         <div class="col-md-4">
-                            <div class="card mb-4 box-shadow promo-card">
+                            <div class="card mb-4 box-shadow promo-card" onclick="loadTranscriptsPage(event, 'transcripts.html')">
                                 <div class="card-body vh-25 d-flex">
                                     <div class="align-items-center">
                                         <i class="bi bi-file-earmark-plus" style="font-size: 80px; opacity: 0.5; margin-right: 1rem;"></i>
                                     </div>
                                     <div>
-                                        <h2 class="card-title pricing-card-title">Upload meeting transcription</h2>
+                                        <h3 class="card-title pricing-card-title">Upload a meeting transcript</h3>
                                         <p> VVT format or plain text </p>
                                     </div>
                                 </div>
@@ -117,23 +117,23 @@
                             <div class="card mb-4 box-shadow promo-card">
                                 <div class="card-body vh-25 d-flex">
                                     <div class="align-items-center">
-                                        <i class="bi bi-stars" style="font-size: 80px; opacity: 0.5; margin-right: 1rem;"></i>
+                                        <i class="bi bi-file-earmark-pdf" style="font-size: 80px; opacity: 0.5; margin-right: 1rem;"></i>
                                     </div>
                                     <div>
-                                        <h2 class="card-title pricing-card-title">Summarize or generate meeting minutes</h2>
+                                        <h3 class="card-title pricing-card-title">Add PDF documents</h3>
+                                        <p> Give useful documents like normatives or documentations to base the model and extract important information for the meeting minutes </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card mb-4 box-shadow promo-card">
+                            <div class="card mb-4 box-shadow promo-card" onclick="loadSummarizeHomePage(event, 'summarize_home.html')">
                                 <div class="card-body vh-25 d-flex">
                                     <div class="align-items-center">
-                                        <i class="bi bi-chat-right-text" style="font-size: 80px; opacity: 0.5; margin-right: 1rem;"></i>
+                                        <i class="bi bi-stars" style="font-size: 80px; opacity: 0.5; margin-right: 1rem;"></i>
                                     </div>
                                     <div>
-                                        <h2 class="card-title pricing-card-title">Chat the meeting transcription</h2>
-                                        <p> Ask for decisions and future plans </p>
+                                        <h3 class="card-title pricing-card-title">Summarize, generate meeting minutes or action items</h3>
                                     </div>
                                 </div>
                             </div>
@@ -147,16 +147,16 @@
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <p class="col-md-4 mb-0 text-body-secondary">© MIT</p>
             <ul class="nav col-md-4 justify-content-end">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary"><i class="bi bi-github"></i></a></li>
+                <li class="nav-item"><a href="https://github.com/lucasandre22/tcc" class="nav-link px-2 text-body-secondary"><i class="bi bi-github"></i></a></li>
             </ul>
         </footer>
     </div>
 
     <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="./script.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>

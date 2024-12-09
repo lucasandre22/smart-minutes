@@ -18,7 +18,7 @@ class MinutesRefine(Minutes):
     """
     def __init__(self, llm: Ollamallm,
                  refine_prompt=MinutesRefinePrompts.refine_prompt_default(),
-                 question_prompt=MinutesRefinePrompts.question_prompt_default()):
+                 question_prompt=MinutesRefinePrompts.organize_prompt_default()):
         Minutes.__init__(self,
             load_summarize_chain(
                 llm, 

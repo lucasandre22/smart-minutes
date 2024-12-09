@@ -1,0 +1,54 @@
+<div>
+    <div>
+        <div class="container d-flex justify-content-center align-items-center">
+            <h1>Documents</h1>
+        </div>
+        <div class="container d-flex justify-content-center align-items-center">
+            <p>Upload pdf documents that will be consulted in summarization/minutes</p>
+        </div>
+    </div>
+    
+
+    <!-- Main Content -->
+    <div>
+        <div 
+            id="dropZone"
+            class="col-md-4 container d-flex justify-content-center align-items-center">
+            <div class="card promo-card-upload w-100" ondrop="dropDocumentHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);">
+                <div class="card-body d-flex align-items-center flex-column" id="uploadCard">
+                    <div class="align-items-center">
+                        <i class="bi bi-file-earmark-arrow-up" style="font-size: 65px; opacity: 0.5;"></i>
+                    </div>
+                    <div class="align-items-center">
+                        <p> <strong>Choose a file </strong> or drag it here. </p>
+                        <p> Only pdf format is supported. </p>
+                    </div>
+                </div>
+                <input type="file" id="fileInput" style="display: none;" accept=".pdf">
+            </div>
+        </div>
+    </div>
+
+    <!-- set the width fixed for the colum-->
+    <div class="col-md-12 container d-flex justify-content-center align-items-center mt-5" style="height: 400px">
+        <div class="card table-card w-100 h-100 pb-4">
+            <div class="card-body d-flex align-items-center flex-column mt-3 h-100" alt="max-height: 100%">
+                <div class="table-container w-75 h-90" style=" overflow-y: auto;">
+                    <table class="table table-fixed" id="filesTable">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 5%;">#</th>
+                                <th scope="col" style="width: 65%;">Document file name</th>
+                                <th scope="col" style="width: 15%;"></th>
+                                <th scope="col" style="width: 15%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Table rows will go here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

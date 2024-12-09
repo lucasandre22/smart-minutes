@@ -53,3 +53,6 @@ if __name__ == "__main__":
 
     print("Resultado:")
     print(result["output_text"])
+    
+    
+    

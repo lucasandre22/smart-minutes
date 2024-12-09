@@ -1,23 +1,47 @@
-from langchain.callbacks.manager import CallbackManager
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from langchain_community.llms import Ollama
-
-from ...summarization.refine import SummarizationRefine
-
-from ...evalluation.summarization.meeting_summarization_metric import LLMTestCase, MeetingSummarizationMetric
-from ...evalluation.ollama_eval_model import OllamaEvalModel
-from ...evalluation.summarization.template import *
 import requests
+import os
+import json
+import asyncio
+import time
+from datetime import datetime
+from fastapi import UploadFile
+from fastapi.responses import FileResponse
+from evalluation.summarization.template import *
 from pathlib import Path
+from core.config import *
+from api.task.task_manager import TaskManager
+from api.task.task import Task
+from api.services.pdf_service import create_pdf
 
-OLLAMA_API_ADDRESS = "http://localhost:11434"
-TRANSCRIPTIONS_DIRECTORY = "../../transcriptions"
-DOCUMENTS_DIRECTORY = "../../documents"
+OLLAMA_API_ADDRESS = os.getenv("OLLAMA_API_ADDRESS")
 
 class Service():
+    _task_manager: TaskManager = TaskManager()
 
     @staticmethod
-    def get_models():
+    async def event_generator():
+        current_data = Service._task_manager.get_current_task()
+        old_data = None
+        while True:
+            # Create a JSON event payload
+            if old_data == None or old_data != current_data:
+                print("Sending new event")
+                old_data = current_data
+                event_data = {
+                    "event": "update",
+                    "task": current_data.toJSON(),
+                }
+                #Send the JSON data
+                yield f"data: {json.dumps(event_data)}\n\n"
+            current_data = Service._task_manager.get_current_task()
+            await asyncio.sleep(1)
+            
+    @staticmethod
+    def clear_current_task():
+        Service._task_manager.clear_current_task()
+
+    @staticmethod
+    def get_available_models():
         response = requests.get(f"{OLLAMA_API_ADDRESS}/api/tags")
 
         if response.status_code == 200:
@@ -31,59 +55,125 @@ class Service():
 
     @staticmethod
     def list_transcriptions():
-        return Service.list_files(TRANSCRIPTIONS_DIRECTORY)
+        return Service.list_files(os.getenv("TRANSCRIPTS_PATH"))
 
     @staticmethod
-    def list_documents(self):
-        return Service.list_files(self.DOCUMENTS_DIRECTORY)
+    def list_documents():
+        return Service.list_files(os.getenv("DOCUMENTS_PATH"))
+    
+    @staticmethod
+    def list_processed_files():
+        return Service.list_files(os.getenv("PROCESSED_FILES_PATH"))
 
     @staticmethod
     def list_files(directory):
         path = Path(directory)
-        return [str(file) for file in path.rglob('*') if file.is_file()]
+        return [str(os.path.basename(file)) for file in path.rglob('*') if file.is_file()]
+    
+    @staticmethod
+    async def upload_file(source_file: UploadFile, destination_path: str):
+        file_path = os.path.join(destination_path, source_file.filename)
+        with open(file_path, "wb") as f:
+            content = await source_file.read()
+            f.write(content)
+        return Service.list_files(os.getenv("DOCUMENTS_PATH"))
+
+    async def upload_transcript_file(source_file: UploadFile, destination_path: str):
+        await Service.upload_file(source_file, destination_path)
+        pass
+
+    @staticmethod
+    def download_file(file_path: str, file_name: str):
+        return FileResponse(path=file_path, filename=file_name, media_type="application/octet-stream")
+
+    @staticmethod
+    def remove_file(file_path: UploadFile):
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
     @staticmethod
     def send(configuration):
-        model=configuration["modelSelected"]
-        temperature=configuration["modelConfiguration"]["temperature"]
-        print(model, temperature)
-        LLM = Ollama(
-            model=model,
-            verbose=True,
-            temperature=0,
-            callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),
-            num_ctx=8192
-        )
-        file = ".\\documents\\ppgca\\transcript_talkers.txt"
-        print("Starting...")
+        pass
+    
+    @staticmethod
+    def get_current_settings():
+        temperature = CONFIG.temperature
+        model = CONFIG.model
+        top_p = CONFIG.top_p
+        debug_traces = CONFIG.debug_traces
+        return { "availableModels": Service.get_available_models(), "selectedModel": model, "temperature": temperature, "top_p": top_p, "debug_traces": debug_traces }
 
-        summarization_refine = SummarizationRefine(LLM)
-        docs = summarization_refine.chunk_file_into_documents(file)
+    @staticmethod
+    def set_current_settings(json):
+        CONFIG.temperature = json["temperature"]
+        CONFIG.model = json["selectedModel"]
+        CONFIG.top_p = json["topP"]
+        CONFIG.debug_traces = json["debugTraces"]
 
-        result = summarization_refine.invoke(docs)
-        result = summarization_refine.generate_final_summary(result)
+    @staticmethod
+    def download_model(json):
+        #TODO
+        model = json["model"]
 
-        #result = 'O texto discute pontos para aprimorar o programa de mestrado, baseando-se em uma autoavaliação interna e nas últimas avaliações da CAPES. O coordenador destaca a necessidade de:\n\n* **Diminuir o tempo médio de conclusão do mestrado**, incentivando a gestão eficiente dos alunos.\n* **Aumentar o número de alunos formados por docente**, uma métrica importante para a CAPES.\n* **Incentivar a produção técnica**, buscando publicações e projetos, com foco em auxiliar os egressos a reportarem suas produções.\n* **Promover a integração entre alunos da mesma linha de pesquisa**, através de eventos e seminários.\n* **Garantir o engajamento docente**, buscando bolsas, financiamentos e atuando com empresas.\n* **Fortalecer as ações de divulgação do programa**, incentivando a participação docente em eventos e divulgação de atividades.\n* **Aumentar a submissão de artigos com participação docente**, buscando maior impacto científico.\n* **Melhorar a qualidade do relatório das atividades para a CAPES**, com informações precisas e completas.\n\nPara alcançar esses objetivos, o coordenador propõe uma coleta de respostas individual dos docentes sobre a autoavaliação, seguida de uma devolutiva em grupo para alinhar visões e ações.  \n\nAlém disso, o texto destaca:\n\n* **A necessidade de aprimorar a comunicação e o acesso à informação**, com a reestruturação do site do programa e a criação de um guia para o lançamento de produção técnica no Lattes.\n* **A importância de fortalecer a participação em editais**, como o Move América da CAPES, o mestrado acadêmico CNPQ e o edital de extensão da UTFPR.\n* **A criação de eventos de divulgação do programa**, liderados pelas comissões de seleção e interação com empresas, para o segundo semestre.\n* **A elaboração de um novo regulamento para o programa**, com 66 artigos, que visa resolver questões e aprimorar a gestão do mestrado.\n\n**Novas discussões surgem a partir da proposta de incluir um novo tipo de colaborador: o "Pesquisador Associado".**  A ideia é permitir que profissionais com mestrado, atuantes em empresas, se envolvam com o programa, participando de pesquisas, publicando artigos e eventualmente ingressando no corpo docente.  O debate aborda:\n\n* **Critérios para seleção e validade do programa de trabalho do Pesquisador Associado.**\n* **Possibilidade de concessão de créditos para alunos que participam do programa "Papos" (estudantes de graduação que se envolvem com a pós-graduação).**\n* **Vinculação do tema do TCC da graduação com a linha de pesquisa do mestrado, potencialmente gerando créditos para o aluno.**\n\n**Adicionalmente, surge a discussão sobre a exigência de produção técnica como requisito para conclusão do mestrado, com foco em criar um sistema para registrar e avaliar essas produções, como relatórios técnicos, artigos e código fonte, em repositórios específicos (GitHub, Google Sites, etc.).**\n\n**Uma nova proposta surge para flexibilizar a formatação da dissertação, permitindo a submissão de um artigo científico em formato de revista, como forma de defesa, em vez da tradicional dissertação.** Essa mudança visa simplificar o processo, alinha-lo com práticas comuns na pesquisa e potencializar a publicação dos trabalhos.\n\n**No contexto adicional, destaca-se a intenção de:**\n\n* **Criar um evento presencial com foco em divulgação do programa, incluindo uma mesa redonda com empresas e relato de experiências de interação com indústrias.**\n* **Organizar uma "jornada de formação" para futuros alunos, com foco em auxiliar na elaboração de pré-propostas e familiarização com o processo de pesquisa.**\n* **Realizar ciclos de lives com atores da indústria, ex-alunos e professores, para ampliar a visibilidade do programa e promover networking.**\n* **Convidar o professor Tigrão, assessor da CAPES para mestrados profissionais, para palestra e reunião de trabalho, visando fortalecer a relação com a CAPES e obter feedback sobre o programa.**\n\nEm suma, o objetivo é fortalecer o programa, aumentar sua visibilidade e garantir sua renovação pela CAPES, com foco na qualidade da formação, na produção científica e na integração com o mercado de trabalho. A inclusão do "Pesquisador Associado" busca ampliar o alcance e a relevância do programa, conectando-o com profissionais da indústria e potencializando a pesquisa aplicada. A implementação de um sistema para registrar e avaliar a produção técnica visa valorizar esse tipo de trabalho e contribuir para o desenvolvimento profissional dos alunos. A discussão sobre a formatação da dissertação busca flexibilizar as exigências e reconhecer diferentes tipos de produção acadêmica.\n\n\n'
+    @staticmethod
+    def generate_summary(transcript, chunk_size, summarization_language, enable_evalluation_system):
+        #TODO
+        processed_filename = "summarization.pdf"
+        summarization_task = Task(name="Summarization", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
+        Service._task_manager.set_current_task(summarization_task)
 
-        input_list: list = [ doc.page_content for doc in docs]
-        actual_output = result["output_text"]
+        #Mock generation time
+        time.sleep(10)
 
-        test_case = LLMTestCase(input=input_list, actual_output=actual_output)
-        model = OllamaEvalModel()
+        create_pdf(content="example pdf", output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
 
-        metric = MeetingSummarizationMetric(
-            threshold=0.5,
-            model=model,
-            verbose_mode=True,
-            async_mode=False,
-            #n represents the number of questions, it can be by chapters or not
-            n=1
-        )
+        summarization_task = Task(name="Summarization", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
+        Service._task_manager.set_current_task(summarization_task)
+    
+    @staticmethod
+    def generate_custom_request(transcript, chunk_size, output_language, user_request):
+        #TODO
+        processed_filename = "custom.pdf"
+        summarization_task = Task(name="Custom request", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
+        Service._task_manager.set_current_task(summarization_task)
 
-        score: float = metric.measure(test_case)
-        reason: str = metric.reason
-        logs = metric.verbose_logs
+        #Mock generation time
+        time.sleep(10)
 
-        print(score)
-        print(metric.total_time_to_measure)
-        print(reason)
+        #Save user_request
+        create_pdf(content="Request from the user:" + user_request + '\n' + "example output", output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
+ 
+        summarization_task = Task(name="Custom request", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
+        Service._task_manager.set_current_task(summarization_task)
+    
+    @staticmethod
+    def generate_minutes(transcript, chunk_size, output_language, participants):
+        #TODO
+        processed_filename = "minutes.pdf"
+        summarization_task = Task(name="Meeting minutes", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
+        Service._task_manager.set_current_task(summarization_task)
+
+        #Mock generation time
+        time.sleep(10)
+
+        #Save user_request
+        create_pdf(content="example output", output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
+ 
+        summarization_task = Task(name="Meeting minutes", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
+        Service._task_manager.set_current_task(summarization_task)
+
+    @staticmethod
+    def generate_action_items(transcript, chunk_size, output_language, participants):
+        #TODO
+        processed_filename = "action_items.pdf"
+        summarization_task = Task(name="Action items", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
+        Service._task_manager.set_current_task(summarization_task)
+
+        #Mock generation time
+        time.sleep(10)
+
+        #Save user_request
+        create_pdf(content="example output", output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
+ 
+        summarization_task = Task(name="Action items", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
+        Service._task_manager.set_current_task(summarization_task)

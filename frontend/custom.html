@@ -1,0 +1,70 @@
+<div class="settings-container">
+    <div class="container d-flex justify-content-center align-items-center">
+        <h1>Custom</h1>
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-center">
+        <p>You can ask the LLM model anything you want to extract from the meeting</p>
+    </div>
+
+    <div class="container d-flex justify-content-start align-items-start go-back-arrow col-md-4" onclick="loadSummarizeHomePage(event, 'summarize_home.html')">
+        <i class="bi bi-arrow-left" style="font-size: 35px; margin-right: 1rem;"></i>
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row d-flex col-md-4 justify-content-center align-items-center">
+            <form>
+                <!-- Model selection -->
+                <div class="mb-3">
+                    <label for="transcriptList" class="form-label">Transcript</label>
+                    <select class="form-select" id="transcriptList">
+                    </select>
+                    <small class="form-text text-muted">Choose the transcript to generate the summary</small>
+                </div>
+
+                <!-- Chunk size -->
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="tokens">Chunk size</label>
+                        <input type="number" id="chunk_size" class="form-control" id="tokens" aria-describedby="tokenHelp" placeholder="400" min="400" max="2000">
+                        <small id="tokenHelp" class="form-text text-muted">
+                            Specify the chunk size (number of tokens or characters) to split the transcript into smaller segments for processing. Smaller chunks improve retrieval accuracy but may require more memory and processing time. Recommended range: 400-2000 tokens.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="language" class="form-label">Output language</label>
+                    <select class="form-select" id="language">
+                        <option value="portuguese">
+                            Portuguese
+                        </option>
+                        <option value="english">
+                            English
+                        </option>
+                    </select>
+                    <small class="form-text text-muted">Choose the language in which the summary will be generated</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="userRequest">What do you want to extract from the transcription?</label>
+                    <textarea class="form-control" id="userRequest" rows="3"></textarea>
+                    <small class="form-text text-muted">You can write a text, ask a question, or make a request, as you were addressing to a person. <strong>Be as detailed as possible.</strong></small>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-center align-items-center">
+                    <button type="button" id="generate" class="btn btn-primary mt-2" onclick="generateCustomRequestFromTranscript()" disabled="true">
+                        Generate
+                        <i class="bi bi-stars"></i>
+                    </button>
+                </div>
+            </form>
+
+            <hr>
+
+            <div id="jobStatusContainer">
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,7 +17,7 @@ Se o contexto não for útil, retorne a ata de reunião original.
 """)
 
     @staticmethod
-    def question_prompt_default() -> str:
+    def organize_prompt_default() -> str:
         return PromptTemplate.from_template(
         """
 Organize a seguinte ata de reunião e remova instruções que não pertencem a ata de reunião:

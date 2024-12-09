@@ -3,6 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from fastapi import FastAPI, Response
 from .controllers import controller
+from .controllers import sse_controller
+from starlette.responses import FileResponse 
+import os
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
@@ -15,27 +19,11 @@ app.add_middleware(
 )
 
 app.include_router(controller.router)
+app.include_router(sse_controller.router)
 
-AUTH=""
+app.mount("/", StaticFiles(directory=os.environ["FRONTEND_PATH"], html = True), name="frontend")
 
-def verify_authorization_header(req):
-    auth_header = req.headers["Authorization"] if "Authorization" in req.headers else ""
-    if auth_header != AUTH:
-        return Response(status_code=401)
-    return None
-
-@app.middleware("http")
-async def security_headers_middleware(request: Request, call_next):
-    error_response = verify_authorization_header(request)
-    if error_response:
-        return error_response
-
-    response = await call_next(request)
-    return response
-
-@app.get("/")
-async def root():
-    return {"message": "Welcome to the FastAPI Application!"}
+#TODO: first run: generate rag databases
 
 def custom_openapi_message():
     if app.openapi_schema:

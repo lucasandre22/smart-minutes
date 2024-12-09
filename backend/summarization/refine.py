@@ -2,7 +2,7 @@ from langchain.chains.summarize import load_summarize_chain
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain_community.llms import Ollama
-from ..llms.ollama.ollama_llm import Ollamallm
+from llms.ollama.ollama_llm import Ollamallm
 from .summarization import Summarization
 from .template_refine import *
 

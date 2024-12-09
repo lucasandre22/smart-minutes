@@ -37,8 +37,7 @@ class Ollamallm:
     def invoke_chain(self, **kwargs):
         if self.chain is None:
             self.init_chain()
-        return self.chain.run(kwargs)
-        #return self.chain.invoke(kwargs)
+        return self.chain.invoke(kwargs)
 
     def invoke(self, **kwargs):
         self.llm.invoke(kwargs)
