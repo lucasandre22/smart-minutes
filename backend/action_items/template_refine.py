@@ -60,9 +60,9 @@ ATA DE ACTION ITEMS POR COMISSÃO:
     def refine_prompt_default_groups() -> str:
         return PromptTemplate.from_template(
         """
-Sua tarefa é refinar uma ata de actions items para comissões com base na transcrição de uma reunião.
-A reunião inclui várias comissões de pessoas, cada uma com um nome e tarefas atribuídas.
-A estrutura de comissões presentes na reunião e seus respectivos membros é a seguinte:
+Sua tarefa é refinar uma ata de actions items para grupos/pessoas com base na transcrição de uma reunião.
+A reunião pode incluir grupos, como comissões, times, cada uma com um nome e tarefas atribuídas.
+A estrutura de times/comissões presentes na reunião e seus respectivos membros é a seguinte:
 ------------
 team_name: COMISSÃO PERMANENTE DE SELEÇÃO DO PPGCA
 members: Gustavo Alberto Gimenez Lugo (Presidente), Bogdan Tomoyuki Nassu, Daniel Fernando Pigatto, Robson Ribeiro Linhares, Maria Cláudia Figueiredo Pereira Emer, Nádia Puchalski Kozievitch

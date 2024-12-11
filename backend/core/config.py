@@ -25,6 +25,7 @@ DOCS_DATABASE_PATH = os.path.join("databases", "document_database")
 os.makedirs(os.environ["DOCUMENTS_PATH"], exist_ok=True)
 os.makedirs(os.environ["TRANSCRIPTS_PATH"], exist_ok=True)
 os.makedirs(os.environ["PROCESSED_FILES_PATH"], exist_ok=True)
+os.makedirs(os.environ["DOCUMENT_DATABASE_PATH"], exist_ok=True)
 
 OLLAMA_MODELS_URL = "https://ollama.com/library"
 

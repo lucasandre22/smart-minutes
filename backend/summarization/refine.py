@@ -3,6 +3,7 @@ from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain_community.llms import Ollama
 from llms.ollama.ollama_llm import Ollamallm
+from core.config import CONFIG
 from .summarization import Summarization
 from .template_refine import *
 
@@ -36,18 +37,20 @@ class SummarizationRefine(Summarization):
         pass
 
 if __name__ == "__main__":
-    MODEL="lucasalmeida/gemma-2-9b-it-sppo-iter3:Q4_K_M"
     LLM = Ollama(
-        model=MODEL,
+        model=CONFIG.model,
         verbose=True,
         temperature=0,
         callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),
         #top_k=5
     )
-    file = ".\\documents\\ppgca\\transcript_talkers.txt"
+    file = "..\\documents\\ppgca\\transcript_talkers.txt"
 
-    summarization_refine = SummarizationRefine(LLM, refine_prompt=SummarizationRefinePrompts.refine_prompt_transcript())
-    docs = summarization_refine.chunk_file_into_documents(file)
+    summarization_refine = SummarizationRefine(LLM)
+    docs = summarization_refine.chunk_file_into_documents(file, 1024)
+    print(len(docs))
+    docs = summarization_refine.chunk_file_into_documents("databases\\transcripts\\Reunião do Colegiado do PPGCA – 2024_09_30 13_22 BRT – Recording-pt-1.csmt", 1024)
+    print(len(docs))
 
     result = summarization_refine.invoke(docs)
 

@@ -18,19 +18,17 @@ class DocumentRagDatabase(LocalRagDatabase):
         LocalRagDatabase.__init__(self, database_path)
         
     def update_db(self, docs: list[Document]):
-        if not self.db:
-            self.db = FAISS.from_documents(docs, LocalRagDatabase._EMBEDDINGS)
-        self.db.add_documents(docs)
+        self.load_db().add_documents(docs)
 
     def save_local(self):
-        self.db.save_local(self.database_path)
+        self.load_db().save_local(self.database_path)
 
     def update_and_save_db(self, docs: list[Document]):
-        self.db.add_documents(docs)
-        self.db.save_local()
+        self.load_db().add_documents(docs)
+        self.load_db().save_local()
 
     def get_retriever(self):
-        return self.db.as_retriever()
+        return self.load_db().as_retriever()
 
     def create_new_db(self, document_loader: PdfDocumentLoader):
         data = document_loader.docs
@@ -61,7 +59,6 @@ class DocumentRagDatabase(LocalRagDatabase):
             retriever=self.db.as_retriever(), llm=llm
         )
         return retriever_from_llm.invoke(text_to_search)
-
 
 #Example to create a database
 if __name__ == "__main__":

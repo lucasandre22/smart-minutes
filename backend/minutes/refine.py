@@ -2,7 +2,7 @@ from langchain.chains.summarize import load_summarize_chain
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain_community.llms import Ollama
-from backend.llms.ollama.ollama_llm import Ollamallm
+from llms.ollama.ollama_llm import Ollamallm
 from .minutes import Minutes
 from .template_refine import *
 
@@ -16,13 +16,13 @@ class MinutesRefine(Minutes):
     """Summarization that uses refine method:
     Splits up a document or text into chunks, update a rolling summary be iterating over the documents in a sequence.
     """
-    def __init__(self, llm: Ollamallm,
-                 refine_prompt=MinutesRefinePrompts.refine_prompt_default(),
-                 question_prompt=MinutesRefinePrompts.organize_prompt_default()):
+    def __init__(self, llm: Ollamallm, groups):
+        refine_prompt=MinutesRefinePrompts.refine_prompt(groups)
+        question_prompt=MinutesRefinePrompts.organize_prompt(groups)
         Minutes.__init__(self,
             load_summarize_chain(
                 llm, 
-                chain_type="refine", 
+                chain_type="refine",
                 question_prompt=question_prompt,
                 refine_prompt=refine_prompt, 
                 document_variable_name="text", 

@@ -12,11 +12,54 @@ from core.config import *
 from api.task.task_manager import TaskManager
 from api.task.task import Task
 from api.services.pdf_service import create_pdf
+from core.config import CONFIG
+from langchain_community.llms import Ollama
+from summarization.refine import SummarizationRefine
+from minutes.refine import MinutesRefine
+from custom_request.refine import CustomRequestRefine
+from scripts.vvt_cleaner import clear_vtt_file_content
+from action_items.action_items import ActionItems
+from rag.database.docs_rag_database import DocumentRagDatabase
+from rag.document_loader import PdfDocumentLoader
+import threading
 
 OLLAMA_API_ADDRESS = os.getenv("OLLAMA_API_ADDRESS")
 
 class Service():
     _task_manager: TaskManager = TaskManager()
+    _rag_database: DocumentRagDatabase = DocumentRagDatabase(os.getenv("DOCUMENT_DATABASE_PATH"))
+    
+    @staticmethod
+    def update_db(new_file):
+        print("Updating rag database with document file: ", new_file)
+        document_file = PdfDocumentLoader(new_file, 1024, True)
+
+        # if directory exists but empty, create a new db
+        if os.path.exists(os.getenv("DOCUMENT_DATABASE_PATH")) and len(os.listdir(os.getenv("DOCUMENT_DATABASE_PATH"))) == 0:
+            Service._rag_database.create_new_db(document_file)
+            pass
+        elif os.path.isfile(new_file):
+            #TODO: include the summary of the document in a database?
+            Service._rag_database.update_db(document_file.docs)
+            Service._rag_database.save_local()
+    
+    @staticmethod
+    def update_progress_percentage(time_to_run_task_seconds):
+        """_summary_
+
+        Args:
+            time_to_run_task_seconds (_type_): _description_
+        """
+        current_data = Service._task_manager.get_current_task()
+        #Average time for action items, custom and summary
+
+        while time_to_run_task_seconds > 0 and current_data.is_processing:
+            Service._task_manager.set_current_task(Task(name=current_data.name, is_processing=True, state="Processing",
+                                    transcript=current_data.transcript,
+                                    processed_filename=current_data.processed_filename, progress=time_to_run_task_seconds))
+            time_to_run_task_seconds -= 21
+            time.sleep(21)
+            current_data = Service._task_manager.get_current_task()
 
     @staticmethod
     async def event_generator():
@@ -68,8 +111,8 @@ class Service():
     @staticmethod
     def list_files(directory):
         path = Path(directory)
-        return [str(os.path.basename(file)) for file in path.rglob('*') if file.is_file()]
-    
+        return [str(os.path.basename(file)) for file in path.rglob('*') if file.is_file() and file.suffix != '.csmt' and file.suffix != '.removed']
+
     @staticmethod
     async def upload_file(source_file: UploadFile, destination_path: str):
         file_path = os.path.join(destination_path, source_file.filename)
@@ -79,8 +122,19 @@ class Service():
         return Service.list_files(os.getenv("DOCUMENTS_PATH"))
 
     async def upload_transcript_file(source_file: UploadFile, destination_path: str):
-        await Service.upload_file(source_file, destination_path)
-        pass
+        file_path: str = os.path.join(destination_path, source_file.filename)
+        with open(file_path, "wb") as f:
+            content = await source_file.read()
+            f.write(content)
+            f.close()
+        if file_path.endswith(".vtt"):
+            cleaned_file = file_path.replace(".vtt", ".csmt")
+            with open(cleaned_file, 'w', encoding='utf-8') as f:
+                print(cleaned_file)
+                cleaned_content = clear_vtt_file_content(file_path)
+                f.write(cleaned_content)
+                f.close()
+                print()
 
     @staticmethod
     def download_file(file_path: str, file_name: str):
@@ -89,11 +143,9 @@ class Service():
     @staticmethod
     def remove_file(file_path: UploadFile):
         if os.path.exists(file_path):
+            #Do not remove document files!
+            os.rename(file_path, file_path + '.removed')
             os.remove(file_path)
-
-    @staticmethod
-    def send(configuration):
-        pass
     
     @staticmethod
     def get_current_settings():
@@ -116,64 +168,176 @@ class Service():
         model = json["model"]
 
     @staticmethod
-    def generate_summary(transcript, chunk_size, summarization_language, enable_evalluation_system):
-        #TODO
-        processed_filename = "summarization.pdf"
-        summarization_task = Task(name="Summarization", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
-        Service._task_manager.set_current_task(summarization_task)
+    def generate_summary(transcript: str, chunk_size, summarization_language, enable_evalluation_system):
+        try:
+            now = datetime.now()
+            formatted_date = now.strftime("%y-%m-%d-%H-%M")
+            processed_filename = transcript.split(".")[0] + "-" + formatted_date + ".pdf"
+            
+            chunk_size = 1024
 
-        #Mock generation time
-        time.sleep(10)
+            summarization_task = Task(name="Summarization", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
+            Service._task_manager.set_current_task(summarization_task)
 
-        create_pdf(content="example pdf", output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
+            llm = Ollama(
+                model=CONFIG.model,
+                verbose=True,
+                temperature=CONFIG.temperature
+            )
 
-        summarization_task = Task(name="Summarization", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
-        Service._task_manager.set_current_task(summarization_task)
+            if transcript.endswith(".vtt"):
+                transcript = transcript.replace(".vtt", ".csmt")
+            transcript_path = os.path.join(os.environ["TRANSCRIPTS_PATH"], transcript)
+
+            summarization_refine = SummarizationRefine(llm)
+            docs = summarization_refine.chunk_file_into_documents(transcript_path, chunk_size)
+            
+            time_to_generate_summary_seconds = len(docs) * 21
+
+            progress_thread = threading.Thread(target=Service.update_progress_percentage, args=[time_to_generate_summary_seconds])
+            progress_thread.start()
+
+            result = summarization_refine.invoke(docs)
+            content = result["output_text"]
+
+            create_pdf(content=content, output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
+
+            summarization_task = Task(name="Summarization", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
+            Service._task_manager.set_current_task(summarization_task)
+        except Exception as e:
+            Service._task_manager.clear_current_task()
+            raise e
     
     @staticmethod
     def generate_custom_request(transcript, chunk_size, output_language, user_request):
-        #TODO
-        processed_filename = "custom.pdf"
-        summarization_task = Task(name="Custom request", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
-        Service._task_manager.set_current_task(summarization_task)
+        try:
+            now = datetime.now()
+            formatted_date = now.strftime("%y-%m-%d-%H-%M")
+            processed_filename = transcript.split(".")[0] + "-" + formatted_date + ".pdf"
+            #TODO: remove this
+            chunk_size = 1024
 
-        #Mock generation time
-        time.sleep(10)
+            task = Task(name="Custom request", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
+            Service._task_manager.set_current_task(task)
 
-        #Save user_request
-        create_pdf(content="Request from the user:" + user_request + '\n' + "example output", output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
- 
-        summarization_task = Task(name="Custom request", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
-        Service._task_manager.set_current_task(summarization_task)
+            llm = Ollama(
+                model=CONFIG.model,
+                verbose=True,
+                temperature=CONFIG.temperature,
+            )
+            if transcript.endswith(".vtt"):
+                transcript = transcript.replace(".vtt", ".csmt")
+
+            transcript_path = os.path.join(os.environ["TRANSCRIPTS_PATH"], transcript)
+
+            summarization_refine = CustomRequestRefine(llm, user_request)
+            docs = summarization_refine.chunk_file_into_documents(transcript_path, chunk_size)
+            
+            time_to_generate_custom_seconds = len(docs) * 21
+            
+            progress_thread = threading.Thread(target=Service.update_progress_percentage, args=[time_to_generate_custom_seconds])
+            progress_thread.start()
+
+            result = summarization_refine.invoke(docs)
+            content = result["output_text"]
+
+            #Save user_request
+            create_pdf(content="Request from the user:" + user_request + '\n\nContent:\n' + content, output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
+    
+            task = Task(name="Custom request", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
+            Service._task_manager.set_current_task(task)
+        except Exception as e:
+            Service._task_manager.clear_current_task()
+            raise e
     
     @staticmethod
-    def generate_minutes(transcript, chunk_size, output_language, participants):
-        #TODO
-        processed_filename = "minutes.pdf"
-        summarization_task = Task(name="Meeting minutes", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
-        Service._task_manager.set_current_task(summarization_task)
+    def generate_minutes(transcript: str, chunk_size, output_language, participants):
+        try:
+            now = datetime.now()
+            formatted_date = now.strftime("%y-%m-%d-%H-%M")
+            processed_filename = transcript.split(".")[0] + "-" + formatted_date + ".pdf"
+            chunk_size = 1024
+            task = Task(name="Meeting minutes", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
+            Service._task_manager.set_current_task(task)
 
-        #Mock generation time
-        time.sleep(10)
+            llm = Ollama(
+                model=CONFIG.model,
+                verbose=True,
+                temperature=CONFIG.temperature,
+            )
 
-        #Save user_request
-        create_pdf(content="example output", output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
- 
-        summarization_task = Task(name="Meeting minutes", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
-        Service._task_manager.set_current_task(summarization_task)
+            if transcript.endswith(".vtt"):
+                transcript = transcript.replace(".vtt", ".csmt")
+
+            transcript_path = os.path.join(os.environ["TRANSCRIPTS_PATH"], transcript)
+            #Calculate time to run:
+            summarization_refine = MinutesRefine(llm, participants)
+            docs = summarization_refine.chunk_file_into_documents(transcript_path, chunk_size)
+            time_to_generate_minutes_seconds = len(docs) * 21 * 2
+            progress_thread = threading.Thread(target=Service.update_progress_percentage, args=[time_to_generate_minutes_seconds])
+            progress_thread.start()
+
+            from api.services.minutes_service import MinutesService
+            content = MinutesService.generate_minutes(transcript_path, participants)
+
+            #Save user_request
+            create_pdf(content=content, output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
+    
+            task = Task(name="Meeting minutes", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
+            Service._task_manager.set_current_task(task)
+        except Exception as e:
+            Service._task_manager.clear_current_task()
+            raise e
 
     @staticmethod
     def generate_action_items(transcript, chunk_size, output_language, participants):
-        #TODO
-        processed_filename = "action_items.pdf"
-        summarization_task = Task(name="Action items", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
-        Service._task_manager.set_current_task(summarization_task)
+        try:
+            now = datetime.now()
+            formatted_date = now.strftime("%y-%m-%d-%H-%M")
+            processed_filename = transcript.split(".")[0] + "-" + formatted_date + ".pdf"
+            chunk_size = 1024
+            task = Task(name="Action items", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
+            Service._task_manager.set_current_task(task)
 
-        #Mock generation time
-        time.sleep(10)
+            llm = Ollama(
+                model=CONFIG.model,
+                verbose=True,
+                temperature=CONFIG.temperature,
+            )
 
-        #Save user_request
-        create_pdf(content="example output", output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
- 
-        summarization_task = Task(name="Action items", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
-        Service._task_manager.set_current_task(summarization_task)
+            if transcript.endswith(".vtt"):
+                transcript = transcript.replace(".vtt", ".csmt")
+
+            #get participants!!!
+
+            summarization_refine = ActionItems(llm)
+            docs = summarization_refine.chunk_file_into_documents(transcript, chunk_size)
+
+            #TODO: check if ok
+            time_to_generate_action_items_seconds = len(docs) * 21
+            
+            progress_thread = threading.Thread(target=Service.update_progress_percentage, args=[time_to_generate_action_items_seconds])
+            progress_thread.start()
+
+            result = summarization_refine.invoke(docs)
+            content = result["output_text"]
+
+            #Save user_request
+            create_pdf(content=content, output_filename=os.path.join(os.environ["PROCESSED_FILES_PATH"], processed_filename))
+    
+            task = Task(name="Action items", is_processing=False, state="Ready", transcript=transcript, processed_filename=processed_filename)
+            Service._task_manager.set_current_task(task)
+        except Exception as e:
+            Service._task_manager.clear_current_task()
+            raise e
+    
+    #RAG
+    @staticmethod
+    async def update_rag_database(source_file: str, destination_path: str):
+        file_path = os.path.join(destination_path, source_file)
+        Service.update_db(file_path)
+
+    @staticmethod
+    def search_in_rag_database(query: str):
+        docs = Service._rag_database.search_for_similar_docs(query)
+        return docs

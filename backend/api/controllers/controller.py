@@ -41,6 +41,7 @@ async def upload_document(file: UploadFile):
         raise HTTPException(status_code=400, detail="Only PDF files are allowed.")
     directory = os.environ["DOCUMENTS_PATH"]
     await Service.upload_file(file, directory)
+    await Service.update_rag_database(file.filename, directory)
 
     return {"message": f"File '{file.filename}' has been successfully uploaded"}
 
@@ -51,7 +52,7 @@ async def upload_document(file: UploadFile = File(None)):
     #if file.content_type != "application/vtt" or file.content_type != "text/plain" or file.content_type != "application/srt":
         #raise HTTPException(status_code=400, detail="Only VVT, srt or txt files are allowed.")
     directory = os.environ["TRANSCRIPTS_PATH"]
-    await Service.upload_file(file, directory)
+    await Service.upload_transcript_file(file, directory)
     return {"message": f"File '{file.filename}' has been successfully uploaded"}
 
 @router.get('/download/document/{file_name}')
@@ -125,16 +126,6 @@ async def remove_processed_file(req: Request):
 
     Service.remove_file(file_path)
     return {"message": f"File '{filename}' has been successfully removed"}
-
-@router.post('/send')
-async def send(req: Request):
-    body = await req.json()
-    response = ""
-    try:
-        response = Service.send(body)
-    except Exception as e:
-        response = {'error': 'Error processing the request, please try again.', 'details': "", 'response': 'Error processing the request, please try again.'}
-    return response
 
 @router.post('/model/download')
 async def download_model(req: Request):
@@ -234,3 +225,9 @@ async def generate_custom(req: Request, background_tasks: BackgroundTasks):
     )
 
     return {"message": "ok"}
+
+@router.post('/search/documents')
+async def search_documents(req: Request):
+    body = await req.json()
+    query = body["query"]
+    return await Service.search_in_rag_database(query)

@@ -34,7 +34,7 @@ def chunk(input: str, chunk_size=3000) -> list:
     ]
     return chunks
 
-def chunk_into_documents(text, document_path, chunk_size=3000) -> list[Document]:
+def chunk_into_documents(text, document_path, chunk_size=2000) -> list[Document]:
     chunks = chunk(text, chunk_size)
     # TODO: Split the input text by using a langchain method
     return [Document(page_content=t, metadata={"source": document_path}) for t in chunks]
@@ -47,6 +47,7 @@ def chunk_into_character_documents(content_str, document_path, chunk_size=1024) 
         chunk_overlap=200,
         length_function=len,
         is_separator_regex=False,
+        separators=[]
     )
     for chunk in text_splitter.split_text(content_str):
         docs.append(Document(page_content=chunk, metadata={"source": document_path}))

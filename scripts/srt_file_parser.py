@@ -25,14 +25,13 @@ def parse_lines(lines):
 def main():
     with open('D:\\Git\\tcc\\documents\\Emilias_podcast_99_ Anne_Lesinhovski_medium.srt', 'r', encoding='utf-8') as file:
         lines = file.readlines()
-    
+
     chapters = parse_lines(lines)
-    
+
     with open('Emilias_podcast_99_ Anne_Lesinhovski_medium.json', 'w', encoding='utf-8') as outfile:
         for chapter in chapters:
             json.dump(chapter, outfile, ensure_ascii=False)
             outfile.write('\n')
-
 
 if __name__ == "__main__":
     main()

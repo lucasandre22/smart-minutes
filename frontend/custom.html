@@ -22,8 +22,8 @@
                     <small class="form-text text-muted">Choose the transcript to generate the summary</small>
                 </div>
 
-                <!-- Chunk size -->
-                <div class="mb-3">
+                <!--Chunk size 
+                <div class="mb-3" style="visibility: hidden">
                     <div class="form-group">
                         <label for="tokens">Chunk size</label>
                         <input type="number" id="chunk_size" class="form-control" id="tokens" aria-describedby="tokenHelp" placeholder="400" min="400" max="2000">
@@ -31,7 +31,7 @@
                             Specify the chunk size (number of tokens or characters) to split the transcript into smaller segments for processing. Smaller chunks improve retrieval accuracy but may require more memory and processing time. Recommended range: 400-2000 tokens.
                         </small>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="mb-3">
                     <label for="language" class="form-label">Output language</label>
@@ -49,7 +49,7 @@
                 <div class="mb-3">
                     <label for="userRequest">What do you want to extract from the transcription?</label>
                     <textarea class="form-control" id="userRequest" rows="3"></textarea>
-                    <small class="form-text text-muted">You can write a text, ask a question, or make a request, as you were addressing to a person. <strong>Be as detailed as possible.</strong></small>
+                    <small class="form-text text-muted">Use this field to ask anything about the meeting transcript, such as funny moments, conflicts, topics discussed, participant contributions, important dates, etc. <strong>Be as detailed as possible.</strong></small>
                 </div>
 
                 <div class="mb-3 d-flex justify-content-center align-items-center">

@@ -456,7 +456,7 @@ function startSseConnection() {
         console.log('Received SSE message:', message);
         clearJobStatusComponent();
         if(message.task.processing) {
-            toggleProcessingJob(message.task.transcript, message.task.task_name)
+            toggleProcessingJob(message.task.transcript, message.task.task_name, message.task.progress)
         }
         if(!message.task.processing && message.task.state == "Ready") {
             console.log("toggle processed job");
@@ -474,7 +474,7 @@ function clearJobStatusComponent() {
     document.getElementById("jobStatusContainer").innerHTML = "";
 }
 
-function getProcessingJobStatusComponent(transcriptName, taskName) {
+function getProcessingJobStatusComponent(transcriptName, taskName, progress) {
     return `
     <div id="status container">
         <div class="mb-3">
@@ -488,7 +488,7 @@ function getProcessingJobStatusComponent(transcriptName, taskName) {
             <span id="jobState">Processing ${taskName} for transcript: ${transcriptName}</span>
         </div>
         <div class="mb-3 d-flex justify-content-center">
-            <span id="jobState">Please, wait </span>
+            <span id="jobState">Remaining time to finish: <strong> ~${progress} seconds </strong></span>
         </div>
     </div>
     `
@@ -590,9 +590,9 @@ Task from the backend:
 }
 */
 
-function toggleProcessingJob(transcriptName, taskName) {
+function toggleProcessingJob(transcriptName, taskName, progress) {
     const div = document.createElement("div");
-    div.innerHTML = getProcessingJobStatusComponent(transcriptName, taskName);
+    div.innerHTML = getProcessingJobStatusComponent(transcriptName, taskName, progress);
     document.getElementById("jobStatusContainer").appendChild(div);
 }
 
@@ -612,9 +612,11 @@ function toggleProcessedJob(transcriptName, taskName, processed_filename) {
 
 function generateSummary() {
     const transcript = document.getElementById("transcriptList").value;
-    var chunkSize = parseInt(document.getElementById("chunk_size").value) || 400;
+    //var chunkSize = parseInt(document.getElementById("chunk_size").value) || 400;
+    var chunkSize = 400;
     const summarizationLanguage = document.getElementById("language").value;
-    const enableEvalluationSystem = document.getElementById("evalluation").value;
+    const enableEvalluationSystem = false;
+    //const enableEvalluationSystem = document.getElementById("evalluation").value;
 
     chunkSize = chunkSize > 2000 ? 2000 : chunkSize;
 
@@ -654,7 +656,8 @@ function generateSummary() {
 
 function generateCustomRequestFromTranscript() {
     const transcript = document.getElementById("transcriptList").value;
-    var chunkSize = parseInt(document.getElementById("chunk_size").value) || 400;
+    //var chunkSize = parseInt(document.getElementById("chunk_size").value) || 400;
+    var chunkSize = 400;
     const language = document.getElementById("language").value;
     const userRequest = document.getElementById("userRequest").value;
 
@@ -696,7 +699,8 @@ function generateCustomRequestFromTranscript() {
 
 function generateActionItems() {
     const transcript = document.getElementById("transcriptList").value;
-    var chunkSize = parseInt(document.getElementById("chunk_size").value) || 400;
+    //var chunkSize = parseInt(document.getElementById("chunk_size").value) || 400;
+    var chunkSize = 400;
     const language = document.getElementById("language").value;
     const participants = document.getElementById("participants").value;
 
@@ -737,9 +741,11 @@ function generateActionItems() {
 
 function generateMeetingMinutes() {
     const transcript = document.getElementById("transcriptList").value;
-    var chunkSize = parseInt(document.getElementById("chunk_size").value) || 400;
+    //var chunkSize = parseInt(document.getElementById("chunk_size").value) || 400;
+    var chunkSize = 400;
     const language = document.getElementById("language").value;
     const participants = document.getElementById("participants").value;
+    console.log(participants);
 
     chunkSize = chunkSize > 2000 ? 2000 : chunkSize;
 
