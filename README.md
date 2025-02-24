@@ -1,6 +1,29 @@
 # SmartMinutes
 
-This project is a complete system for summarizing, and extracting relevant information from meetings using **Large Language Models (LLMs)** running locally. The system supports auxiliary documents to enhance Meeting Minutes accuracy by employing the **Retrieval-Augmented Generation (RAG)** technique. The source code freely available under the [MIT license](LICENSE.md).
+This project is a complete system for summarizing, and extracting relevant information from meetings using **Large Language Models (LLMs)** running locally. The system supports auxiliary documents to enhance Meeting Minutes accuracy by employing the **Retrieval-Augmented Generation (RAG)** technique.
+
+The source code freely available under the [MIT license](LICENSE.md).
+
+## Contents
+
+<!-- TOC -->
+* [SmartMinutes](#smartminutes)
+* [Contents](#contents)
+* [Initial information](#initial-information)
+* [Hardware Requirements](#hardware-requirements)
+* [Software Requirements](#software-requirements)
+* [Downloading the LLM](#downloading-the-llm)
+* [Quick Start](#quick-start)
+  * [Clone the Repository](#clone-the-repository)
+  * [Backend Setup](#backend-setup)
+  * [Frontend Setup](#frontend-setup)
+* [Project Structure](#project-structure)
+* [Configuration](#configuration)
+* [Project Structure](#project-structure)
+* [Features](#features)
+* [Contributing](#-contributing)
+
+## 🍭 Initial information
 
 The project is divided into two main components:
 - **Backend**: Handles transcription processing, summary generation, and AI model integration.
@@ -21,18 +44,7 @@ Before running the project, ensure the following dependencies are installed:
 - **Python**: Version 3.11 or later 
 - **Ollama**: Required for running LLMs locally, version 0.3.12  ([Installation Guide](https://ollama.com/))
 
-## 📖 Documentation
-
-The full project documentation is available in the docs/ folder. It includes:
-
-- **System Overview**: Architecture and main functionalities.
-- **API Reference**: Endpoints and usage examples.
-
-To view the documentation, navigate to the docs/ folder:
-: 
-API Reference: 
-
-### 🔽 Downloading the LLM
+## 🔽 Downloading the LLM
 
 The project is optimized for **gemma-2-9b-it-sppo-iter3**, which can be downloaded via Ollama with the following command: 
 
@@ -41,7 +53,7 @@ The project is optimized for **gemma-2-9b-it-sppo-iter3**, which can be download
 ollama pull lucasalmeida/gemma-2-9b-it-sppo-iter3:Q4_K_M
 ```
 
-### 🚀 Quick Start
+## 🚀 Quick Start
 #### 1. Clone the Repository
 
 ``` bash
@@ -76,7 +88,7 @@ Just kidding, there are no action to be taken to setup the frontend :).
 The application should now be accessible in your browser at `http://localhost:8000`.
 
 
-### 📂 Project Structure
+## 📂 Project Structure
 ```bash
 ├── backend/            # Backend service (FastAPI, LLM processing, RAG)
 │   ├── action_items/   # All the classes related to the action items feature
@@ -99,7 +111,7 @@ The application should now be accessible in your browser at `http://localhost:80
 └── README.md           # Project documentation
 ```
 
-### 🔧 Configuration
+## 🔧 Configuration
 
 You can configure environment variables in a `backend/core/config.py` file for backend, including API keys and model settings.
 
@@ -107,12 +119,22 @@ Also, you can navigate to the settings page in the applications and configure:
 
 ![Settings page](assets/settings.png)
 
-### 📌 Features
+## 📖 Documentation
+
+The full project documentation is available in the docs/ folder. It includes:
+
+- **System Overview**: Architecture and main functionalities.
+- **API Reference**: Endpoints and usage examples.
+
+To view the documentation, navigate to the `localhost:8000/docs` endpoint.
+
+## 📌 Features
 
 ✅ AI-powered summarization, action items, meeting-minutes and custom requests about the meeting
 ✅ Support for external documents (RAG) 
 ✅ Local LLM execution (no external API costs)  
 ✅ Web-based user interface
-### 🤝 Contributing
+
+## 🤝 Contributing
 
 Feel free to submit issues, pull requests, or suggestions to improve the system!
