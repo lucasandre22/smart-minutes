@@ -7,19 +7,41 @@ from core.config import CONFIG
 from .summarization import Summarization
 from .template_refine import *
 
-"""Refine chain.
+"""
+Refine chain.
 
 The refine documents chain constructs a response by looping over the input documents
 and iteratively updating its answer.
 """
 
 class SummarizationRefine(Summarization):
-    """Summarization that uses refine method:
-    Splits up a document or text into chunks, update a rolling summary be iterating over the documents in a sequence.
     """
+    A class for performing summarization using the refine method.
+
+    This class extends `Summarization` to implement a summarization chain that splits a document or text into chunks,
+    iteratively updates a rolling summary by processing each chunk in sequence.
+
+    Attributes:
+        llm (Ollamallm): The language model used for summarization.
+    
+    Methods:
+        __init__(self, llm: Ollamallm, refine_prompt: str, question_prompt: str):
+            Initializes the SummarizationRefine object with a language model and user-defined prompts for the refine and question steps.
+        organize_summary(self):
+            A placeholder method for organizing the summary in a timeline.
+    """
+
     def __init__(self, llm: Ollamallm,
                  refine_prompt=SummarizationRefinePrompts.refine_prompt_default(),
                  question_prompt=SummarizationRefinePrompts.question_prompt_default()):
+        """
+        Initializes the SummarizationRefine object with a language model and user-defined prompts for the refine and question steps.
+
+        Args:
+            llm (Ollamallm): The language model used for summarization.
+            refine_prompt (str): The prompt used to guide the refine step for iteratively updating the summary.
+            question_prompt (str): The prompt used to guide the question step for refining the summary.
+        """
         Summarization.__init__(self,
             load_summarize_chain(
                 llm, 
@@ -34,24 +56,9 @@ class SummarizationRefine(Summarization):
 
     #TODO: organize the summary in a timeline
     def organize_summary():
+        """
+        Organizes the summary into a timeline.
+
+        This is a placeholder method, which is intended to later organize the summary into a structured timeline format.
+        """
         pass
-
-if __name__ == "__main__":
-    LLM = Ollama(
-        model=CONFIG.model,
-        verbose=True,
-        temperature=0,
-        callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]),
-        #top_k=5
-    )
-    file = "..\\documents\\ppgca\\transcript_talkers.txt"
-
-    summarization_refine = SummarizationRefine(LLM)
-    docs = summarization_refine.chunk_file_into_documents(file, 1024)
-    print(len(docs))
-    docs = summarization_refine.chunk_file_into_documents("databases\\transcripts\\Reunião do Colegiado do PPGCA – 2024_09_30 13_22 BRT – Recording-pt-1.csmt", 1024)
-    print(len(docs))
-
-    result = summarization_refine.invoke(docs)
-
-    print(result["output_text"])

@@ -6,7 +6,29 @@ from langchain_community.llms import Ollama
 from langchain.chains import LLMChain
 
 class Ollamallm:
+    """
+    Wrapper class for the Ollama LLM, providing functionality for prompt handling,
+    chain initialization, and response invocation.
+
+    Attributes:
+        llm (Ollama): The instantiated LLM model.
+        prompt (PromptTemplate): The prompt template used for query generation.
+        chain: The processing pipeline connecting the prompt, LLM, and output parser.
+    """
+
     def __init__(self, model: str, prompt: PromptTemplate, verbose=True, temperature=0.1, callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]), num_ctx=1024):
+        """
+        Initializes the Ollamallm instance.
+
+        Args:
+            model (str): The name of the LLM model to use.
+            prompt (PromptTemplate): The template for structuring prompts.
+            verbose (bool, optional): Whether to enable verbose mode. Defaults to True.
+            temperature (float, optional): The temperature setting for response variability. Defaults to 0.1.
+            callback_manager (CallbackManager, optional): Manages callbacks for streaming responses.
+                Defaults to a standard streaming handler.
+            num_ctx (int, optional): The context window size for the model. Defaults to 1024.
+        """
         self.llm = Ollama(
             model=model,
             verbose=verbose,
@@ -18,29 +40,54 @@ class Ollamallm:
         self.prompt = prompt
         self.chain = None
         
-        #num_ctx=131072 #llama3.1 ctx! The idea is that users most likely want to balance model size and context size.
-        #temperature
-        #top_k
-        #top_p
-        #num_ctx: Optional[int] = None: Sets the size of the context window used to generate the next token. (Default: 2048)
-        #num_predict: Maximum number of tokens to predict when generating text. (Default: 128, -1 = infinite generation, -2 = fill context)
-        #tfs_z: tail free sampling:
-        
     def set_prompt(self, prompt):
+        """
+        Sets a new prompt template for the model.
+
+        Args:
+            prompt (PromptTemplate): The new prompt template to use.
+        """
         self.prompt = prompt
         
     def init_chain(self):
+        """
+        Initializes the processing chain by linking the prompt, LLM, and output parser.
+
+        Raises:
+            ValueError: If the prompt is not set before initialization.
+        """
         if self.prompt is None:
             raise ValueError("The prompt is required to be initialized. Make sure to call set_prompt(prompt) before initializing the chain.")
         self.chain = self.prompt | self.llm | StrOutputParser()
 
     def invoke_chain(self, **kwargs):
+        """
+        Invokes the processing chain to generate a response based on the provided inputs.
+
+        Args:
+            **kwargs: Additional keyword arguments to be passed into the prompt.
+
+        Returns:
+            str: The generated response from the LLM.
+        """
         if self.chain is None:
             self.init_chain()
         return self.chain.invoke(kwargs)
 
     def invoke(self, **kwargs):
+        """
+        Directly invokes the LLM without the processing chain.
+
+        Args:
+            **kwargs: Additional keyword arguments to be passed to the LLM.
+        """
         self.llm.invoke(kwargs)
 
     def get_llm(self) -> Ollama:
+        """
+        Retrieves the underlying LLM instance.
+
+        Returns:
+            Ollama: The initialized LLM object.
+        """
         return self.llm
