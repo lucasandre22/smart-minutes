@@ -1,7 +1,6 @@
 langchain/csm
 csm*
 **/__pycache__
-*.txt
 *.pdf
 *.vvt
 backend/databases
