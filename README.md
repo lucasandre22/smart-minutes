@@ -66,7 +66,7 @@ The application should now be accessible in your browser at `http://localhost:80
 
 
 ### 📂 Project Structure
-
+```bash
 ├── backend/            # Backend service (FastAPI, LLM processing, RAG)
 │   ├── action_items/   # All the classes related to the action items feature
 │   ├── api/            # Classes related to the FastAPI
@@ -86,12 +86,14 @@ The application should now be accessible in your browser at `http://localhost:80
 │   └── *.html...       # Static HTML pages
 ├── docs/               # Documentation and design assets
 └── README.md           # Project documentation
+```
 
 ### 🔧 Configuration
 
 You can configure environment variables in a `backend/core/config.py` file for backend, including API keys and model settings.
 
 Also, you can navigate to the settings page in the applications and configure:
+
 ![Settings page](assets/settings.png)
 
 ### 📌 Features
