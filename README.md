@@ -21,6 +21,17 @@ Before running the project, ensure the following dependencies are installed:
 - **Python**: Version 3.11 or later 
 - **Ollama**: Required for running LLMs locally, version 0.3.12  ([Installation Guide](https://ollama.com/))
 
+## 📖 Documentation
+
+The full project documentation is available in the docs/ folder. It includes:
+
+- **System Overview**: Architecture and main functionalities.
+- **API Reference**: Endpoints and usage examples.
+
+To view the documentation, navigate to the docs/ folder:
+: 
+API Reference: 
+
 ### 🔽 Downloading the LLM
 
 The project is optimized for **gemma-2-9b-it-sppo-iter3**, which can be downloaded via Ollama with the following command: 
