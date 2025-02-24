@@ -1,19 +1,15 @@
-const BACKEND_URL = "http://localhost:8000"
-const API_VERSION_PREFIX = "/api/v1"
+const BACKEND_URL = window.location.href;
+console.log(BACKEND_URL)
+const API_VERSION_PREFIX = "api/v1";
 var dropZone;
 var evtSource = null;
-
-window.onload = function fillParameters() {
-    //fillAvailableModels();
-    //fillAvailableTranscriptions();
-}
 
 window.onbeforeunload = function closeWindow() {
     closeEventSource();
 }
 
 function fillAvailableTranscriptions(element) {
-    let endpoint = `${API_VERSION_PREFIX}/list/transcripts`;
+    const endpoint = `${API_VERSION_PREFIX}/list/transcripts`;
 
     const options = {
         method: 'GET'
@@ -76,12 +72,12 @@ function loadPage(event, url, callback = function() {}) {
 function loadDocumentsPage(event, url) {
     loadPage(event, url, function () {
         setNavBarActive(document.getElementById('navbarDocuments'));
-        fillFilesTable("/api/v1/list/documents", document.querySelector("#filesTable tbody"), "document");
+        fillFilesTable("api/v1/list/documents", document.querySelector("#filesTable tbody"), "document");
         document.getElementById('uploadCard').addEventListener('click', function() {
             document.getElementById('fileInput').click();
         });
         document.getElementById('fileInput').addEventListener('change', function(event) {
-            uploadDocument(event.target.files[0], "/api/v1/upload/document", ['pdf']);
+            uploadDocument(event.target.files[0], "api/v1/upload/document", ['pdf']);
         });
         dropZone = document.getElementById("uploadCard");
     });
@@ -90,12 +86,12 @@ function loadDocumentsPage(event, url) {
 function loadTranscriptsPage(event, url) {
     loadPage(event, url, function () {
         setNavBarActive(document.getElementById('navbarTranscripts'));
-        fillFilesTable("/api/v1/list/transcripts", document.querySelector("#filesTable tbody"), "transcript");
+        fillFilesTable("api/v1/list/transcripts", document.querySelector("#filesTable tbody"), "transcript");
         document.getElementById('uploadCard').addEventListener('click', function() {
             document.getElementById('fileInput').click();
         });
         document.getElementById('fileInput').addEventListener('change', function(event) {
-            uploadDocument(event.target.files[0], "/api/v1/upload/transcript", ['txt', 'srt', 'vtt']);
+            uploadDocument(event.target.files[0], "api/v1/upload/transcript", ['txt', 'srt', 'vtt']);
         });
         dropZone = document.getElementById("uploadCard");
     });
@@ -131,7 +127,7 @@ function loadSummarizationPage(event, url) {
 function loadProcessedFilesPage(event, url) {
     loadPage(event, url, function () {
         setNavBarActive(document.getElementById('navbarProcessedFiles'));
-        fillFilesTable("/api/v1/list/processed-files", document.querySelector("#filesTable tbody"), "processed-file");
+        fillFilesTable("api/v1/list/processed-files", document.querySelector("#filesTable tbody"), "processed-file");
     });
 }
 
@@ -179,12 +175,12 @@ function fillFilesTable(endpoint, tableBody, downloadAndRemoveEndpoint) {
 
 function refreshDocumentsFilesTable() {
     document.querySelector("#filesTable tbody").innerHTML = '';
-    fillFilesTable("/api/v1/list/documents", document.querySelector("#filesTable tbody"), "document");
+    fillFilesTable("api/v1/list/documents", document.querySelector("#filesTable tbody"), "document");
 }
 
 function refreshTranscriptFilesTable() {
     document.querySelector("#filesTable tbody").innerHTML = '';
-    fillFilesTable("/api/v1/list/transcripts", document.querySelector("#filesTable tbody"), "transcript");
+    fillFilesTable("api/v1/list/transcripts", document.querySelector("#filesTable tbody"), "transcript");
 }
 
 function uploadDocument(file, endpoint, validExtensions) {
@@ -230,11 +226,11 @@ function uploadDocument(file, endpoint, validExtensions) {
 }
 
 function dropDocumentHandler(event) {
-    dropFileHandler(event, "/api/v1/upload/document", ['pdf']);
+    dropFileHandler(event, "api/v1/upload/document", ['pdf']);
 }
 
 function dropTranscriptHandler(event) {
-    dropFileHandler(event, "/api/v1/upload/transcript", ['txt', 'srt', 'vtt']);
+    dropFileHandler(event, "api/v1/upload/transcript", ['txt', 'srt', 'vtt']);
 }
 
 function dropFileHandler(event, endpoint, validExtensions) {
@@ -270,7 +266,7 @@ function dragLeaveHandler(event) {
 function downloadDocument(button, parcialEndpoint) {
     const row = button.closest('tr');
     const fileName = row.querySelector('td').textContent.trim();
-    const endpoint = `/api/v1/download/${parcialEndpoint}/${fileName}`;
+    const endpoint = `api/v1/download/${parcialEndpoint}/${fileName}`;
 
     const options = {
         method: 'GET'
@@ -308,7 +304,7 @@ function removeDocument(button, parcialEndpoint) {
     const fileName = row.querySelector('td').textContent.trim();
     if(!confirm(`Are you sure you want to remove the document "${fileName}"?`))
         return;
-    const endpoint = `/api/v1/remove/${parcialEndpoint}`;
+    const endpoint = `api/v1/remove/${parcialEndpoint}`;
 
     const options = {
         method: 'POST',
@@ -349,7 +345,7 @@ function updateRangeValue(inputElement, outputElementId) {
 }
 
 function fillCurrentSettingsValues() {
-    const endpoint = '/api/v1/settings'
+    const endpoint = 'api/v1/settings'
     const options = {
         method: 'GET'
     };
@@ -386,7 +382,7 @@ function fillCurrentSettingsValues() {
 }
 
 function sendSettingsValues() {
-    const endpoint = '/api/v1/settings'
+    const endpoint = 'api/v1/settings'
 
     const options = {
         method: 'POST',
@@ -419,7 +415,7 @@ function sendSettingsValues() {
 }
 
 function searchAndDownloadModel() {
-    const endpoint = '/api/v1/model/download'
+    const endpoint = 'api/v1/model/download'
     const model = document.getElementById("newModel").value;
     document.getElementById("downloadLoadingSpinner").style.visibility = "visible";
 
@@ -450,7 +446,7 @@ function searchAndDownloadModel() {
 }
 
 function startSseConnection() {
-    evtSource = new EventSource(BACKEND_URL + '/stream/v1/stream');
+    evtSource = new EventSource(BACKEND_URL + 'stream/v1/stream');
     evtSource.onmessage = (event) => {
         const message = JSON.parse(event.data);
         console.log('Received SSE message:', message);
@@ -525,7 +521,7 @@ function getProcessedStatusComponent(taskName, transcriptName, processed_filenam
 }
 
 function downloadProcessedFile(processed_file) {
-    const endpoint = `/api/v1/generate/download/${processed_file}`;
+    const endpoint = `api/v1/generate/download/${processed_file}`;
 
     const options = {
         method: 'GET'
@@ -559,7 +555,7 @@ function downloadProcessedFile(processed_file) {
 }
 
 function clearProcessedFile() {
-    const endpoint = '/api/v1/generate/clear'
+    const endpoint = 'api/v1/generate/clear'
     const options = {
         method: 'GET'
     };
@@ -627,7 +623,7 @@ function generateSummary() {
         enableEvalluationSystem
     })
 
-    const endpoint = '/api/v1/generate/summary'
+    const endpoint = 'api/v1/generate/summary'
 
     const options = {
         method: 'POST',
@@ -670,7 +666,7 @@ function generateCustomRequestFromTranscript() {
         userRequest
     })
 
-    const endpoint = '/api/v1/generate/custom'
+    const endpoint = 'api/v1/generate/custom'
 
     const options = {
         method: 'POST',
@@ -713,7 +709,7 @@ function generateActionItems() {
         participants
     })
 
-    const endpoint = '/api/v1/generate/action-items'
+    const endpoint = 'api/v1/generate/action-items'
 
     const options = {
         method: 'POST',
@@ -756,7 +752,7 @@ function generateMeetingMinutes() {
         participants
     })
 
-    const endpoint = '/api/v1/generate/minutes'
+    const endpoint = 'api/v1/generate/minutes'
 
     const options = {
         method: 'POST',

@@ -11,6 +11,7 @@ from langchain_core.output_parsers import StrOutputParser
 from core.config import CONFIG
 from api.services.service import Service
 from minutes.refine import MinutesRefine
+import os
 
 #TODO: use a centralized model
 
@@ -81,7 +82,7 @@ Resposta:
         for citation in document_citations:
             
 
-            #TODO: make a prompt to decide if the citation is pertinent or not
+            #TODO: make a prompt to decide if the citation is pertinent or not!!!
             #result = rag_chain_decider.invoke(citation["citation"])
             #print(result)
 
@@ -103,14 +104,14 @@ Resposta:
         i = 1
         for document in document_citations:
             text_citations += (
-                "Citação" + str(i) + ": " + document["citation"] +
-                "\nPossíveis documentos: " +
-                document["documents"][0] + ", " + document["documents"][1] + "." +
-                "\nContexto: " + document["context"] + "\n"
+                "Citação " + str(i) + ": \"" + document["citation"] + "\"" +
+                "\nSe refere aos possíveis documentos: " +
+                os.path.basename(document["documents"][0]) + " e " + os.path.basename(document["documents"][1]) + "." +
+                "\nContexto sobre a citação " + str(i) + ": " + document["context"] + "\n\n"
             )
             i += 1
 
-        result = result + "\n------------------\nPossíveis citações a documentos durante a reunião:\n" + text_citations
+        result = result + "\n------------------\n Lista de possíveis citações a documentos durante a reunião:\n" + text_citations
         return result
 
 def generate_minutes(transcription_file, groups):

@@ -145,7 +145,7 @@ class Service():
         if os.path.exists(file_path):
             #Do not remove document files!
             os.rename(file_path, file_path + '.removed')
-            os.remove(file_path)
+            #os.remove(file_path)
     
     @staticmethod
     def get_current_settings():
@@ -172,7 +172,7 @@ class Service():
         try:
             now = datetime.now()
             formatted_date = now.strftime("%y-%m-%d-%H-%M")
-            processed_filename = transcript.split(".")[0] + "-" + formatted_date + ".pdf"
+            processed_filename = transcript.split(".")[0] + "-" + formatted_date + "-summary.pdf"
             
             chunk_size = 1024
 
@@ -213,7 +213,7 @@ class Service():
         try:
             now = datetime.now()
             formatted_date = now.strftime("%y-%m-%d-%H-%M")
-            processed_filename = transcript.split(".")[0] + "-" + formatted_date + ".pdf"
+            processed_filename = transcript.split(".")[0] + "-" + formatted_date + "-custom.pdf"
             #TODO: remove this
             chunk_size = 1024
 
@@ -255,7 +255,7 @@ class Service():
         try:
             now = datetime.now()
             formatted_date = now.strftime("%y-%m-%d-%H-%M")
-            processed_filename = transcript.split(".")[0] + "-" + formatted_date + ".pdf"
+            processed_filename = transcript.split(".")[0] + "-" + formatted_date + "-minutes.pdf"
             chunk_size = 1024
             task = Task(name="Meeting minutes", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
             Service._task_manager.set_current_task(task)
@@ -294,7 +294,7 @@ class Service():
         try:
             now = datetime.now()
             formatted_date = now.strftime("%y-%m-%d-%H-%M")
-            processed_filename = transcript.split(".")[0] + "-" + formatted_date + ".pdf"
+            processed_filename = transcript.split(".")[0] + "-" + formatted_date + "-action-items.pdf"
             chunk_size = 1024
             task = Task(name="Action items", is_processing=True, state="Processing", transcript=transcript, processed_filename=processed_filename)
             Service._task_manager.set_current_task(task)
@@ -308,10 +308,12 @@ class Service():
             if transcript.endswith(".vtt"):
                 transcript = transcript.replace(".vtt", ".csmt")
 
-            #get participants!!!
+            transcript_path = os.path.join(os.environ["TRANSCRIPTS_PATH"], transcript)
 
-            summarization_refine = ActionItems(llm)
-            docs = summarization_refine.chunk_file_into_documents(transcript, chunk_size)
+            #get and send participants!!!
+
+            action_items = ActionItems(llm)
+            docs = action_items.chunk_file_into_documents(transcript_path, chunk_size)
 
             #TODO: check if ok
             time_to_generate_action_items_seconds = len(docs) * 21
@@ -319,7 +321,7 @@ class Service():
             progress_thread = threading.Thread(target=Service.update_progress_percentage, args=[time_to_generate_action_items_seconds])
             progress_thread.start()
 
-            result = summarization_refine.invoke(docs)
+            result = action_items.invoke(docs)
             content = result["output_text"]
 
             #Save user_request

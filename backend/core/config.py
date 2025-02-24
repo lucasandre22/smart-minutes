@@ -1,11 +1,6 @@
 import os
 
-os.environ["AZURE_OPENAI_API_KEY"] = ""
-os.environ["AZURE_OPENAI_ENDPOINT"] = ""
 os.environ["OLLAMA_API_ADDRESS"] = "http://localhost:11434"
-
-# Configuration regarding the LLM to be used
-os.environ["LANGUAGE_MODEL"] = ""
 
 # Configuration regarding the documents
 os.environ["DOCUMENTS_PATH"] = "databases/docs"

@@ -120,7 +120,7 @@ async def remove_processed_file(req: Request):
     body = await req.json()
     filename = body["file"]
 
-    file_path = os.path.join(os.environ["DOCUMENTS_PATH"], filename)
+    file_path = os.path.join(os.environ["PROCESSED_FILES_PATH"], filename)
     if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="File not found.")
 
