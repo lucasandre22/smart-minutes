@@ -135,6 +135,11 @@ To view the documentation, navigate to the `localhost:8000/docs` endpoint.
 ✅ Local LLM execution (no external API costs)  
 ✅ Web-based user interface
 
+## 📖 Final considerations
+
+- The prompts for every technic follows the `DeepEval` architecture, it is defined in `template_refine.py` files. Example: all the prompts regarding the minutes, are defined in `backend/minutes/template_refine.py` minutes module.
+- All the LLM prompts are in **Portuguese**. The idea is to have English in the future versions too.
+
 ## 🤝 Contributing
 
 Feel free to submit issues, pull requests, or suggestions to improve the system!

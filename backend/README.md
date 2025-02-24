@@ -3,6 +3,7 @@
 This is the backend service for the SmartMinutes project. It provides APIs for transcribing, summarizing, and managing meeting-related data using **FastAPI** and locally running **Large Language Models (LLMs)**.
 
 ## 📂 Project Structure
+
 ```bash
 ├── action_items/     # All the classes related to the action items feature
 ├── api/              # Classes related to the FastAPI
@@ -19,6 +20,8 @@ This is the backend service for the SmartMinutes project. It provides APIs for t
 ├── utils.py          # Python file that stores some utilities used along the code
 └── README.md         # This documentation file
 ```
+
+For each module, there is a `template.py` file which are defined all the LLM prompts used in the module.
 
 ## 📖 API Documentation
 Once the backend is running, you can explore the API documentation:
