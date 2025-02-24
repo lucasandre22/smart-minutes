@@ -113,7 +113,7 @@ The application should now be accessible in your browser at `http://localhost:80
 
 ## 🔧 Configuration
 
-You can configure environment variables in a `backend/core/config.py` file for backend, including API keys and model settings.
+You can configure environment variables in `backend/core/config.py` file for backend, including API keys and model settings.
 
 Also, you can navigate to the settings page in the applications and configure:
 
