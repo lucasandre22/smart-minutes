@@ -10,7 +10,7 @@ The source code freely available under the [MIT license](LICENSE.md).
 * [SmartMinutes](#smartminutes)
 * [Contents](#contents)
 * [Initial information](#-initial-information)
-* [Hardware Requirements](#-hardware-requirements)
+* [Hardware Requirements](#️-hardware-requirements)
 * [Software Requirements](#-software-requirements)
 * [Downloading the LLM](#-downloading-the-llm)
 * [Quick Start](#quick-start)
