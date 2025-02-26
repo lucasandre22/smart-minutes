@@ -2,6 +2,8 @@
 
 This project is a complete system for summarizing, and extracting relevant information from meetings using **Large Language Models (LLMs)** running locally. The system supports auxiliary documents to enhance Meeting Minutes accuracy by employing the **Retrieval-Augmented Generation (RAG)** technique.
 
+It was developed as part of a Bachelor’s Thesis "Combining LLMs and RAG for Meeting Minutes Automation and Follow-ups" with 10/10 score.
+
 The source code freely available under the [MIT license](LICENSE.md).
 
 ## Contents
