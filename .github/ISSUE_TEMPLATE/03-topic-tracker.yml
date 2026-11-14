@@ -1,0 +1,44 @@
+name: Topic tracker
+description: Group related findings under one topic with a traceable checklist.
+title: "[Backend review]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for an umbrella topic, not a single bug. Preserve stable finding IDs. Link focused implementation issues if work is split; keep the topic checklist as the source of completion status.
+  - type: input
+    id: topic
+    attributes:
+      label: Topic and scope
+      description: Name the topic and affected backend workflows.
+    validations:
+      required: true
+  - type: textarea
+    id: baseline
+    attributes:
+      label: Review baseline and evidence
+      description: Record the reviewed commit, review method, reproduced failures, and validation limitations. Distinguish confirmed defects from design gaps and hypotheses.
+    validations:
+      required: true
+  - type: textarea
+    id: findings
+    attributes:
+      label: Findings checklist
+      description: For every finding include a stable ID, problem, consequence, source link, and proposed outcome. Use Markdown task items.
+      placeholder: "- [ ] F001 - Problem. Impact. Proposed outcome. Source link."
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and implementation links
+      description: Link prerequisite topics, focused issues, and pull requests. Write None if there are none.
+    validations:
+      required: true
+  - type: textarea
+    id: completion
+    attributes:
+      label: Completion criteria
+      description: Define the evidence required to check off findings and close this topic.
+    validations:
+      required: true
