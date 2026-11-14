@@ -1,0 +1,64 @@
+name: Bug report
+description: Report incorrect behavior with reproducible evidence.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues first. If the problem belongs to a backend review topic, link that issue and its finding number. Report one independently fixable problem per bug report. Do not include credentials or private meeting content.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Backend - critical and high-impact defects
+        - Backend - API, validation, and operations
+        - Backend - generation and output quality
+        - Backend - documents, retrieval, and storage
+        - Backend - parsing and evaluation
+        - Backend - maintainability, configuration, and tests
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and impact
+      description: Describe the concrete trigger, incorrect behavior, and who or what is affected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include a minimal sanitized input or API request and numbered steps. For a static finding, give the code path and explain why reproduction was not run.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: State both explicitly, including status codes or output when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit SHA, Python and OS versions, dependency setup, and Ollama/model/settings when applicable. Write N/A for irrelevant details.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and related findings
+      description: Sanitized traceback, logs, source links, related issue numbers, and review finding IDs. Distinguish observed behavior from suspected impact.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Completion criteria
+      description: Describe observable corrected behavior and the regression check that would demonstrate it.
+    validations:
+      required: true

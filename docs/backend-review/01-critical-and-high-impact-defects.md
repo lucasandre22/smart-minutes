@@ -1,0 +1,31 @@
+# [Backend review]: Critical and high-impact defects
+
+## Scope and baseline
+
+Track the backend review's findings **F001-F010**. Review baseline: [`c4808c01d8b08b800fbddcc02547afb2701554eb`](https://github.com/lucasandre22/smart-minutes/commit/c4808c01d8b08b800fbddcc02547afb2701554eb). Scope is Python backend code only.
+
+Evidence: static code-path inspection, a Windows path-normalization probe, and verification that `backend/ner` is absent. Exploit chains and model-backed workflows were not executed. All 49 Python files passed syntax parsing; full tests were unavailable because the review interpreter (Python 3.13.5) had no pytest installed. Severity depends on deployment exposure; distinguish confirmed code defects from conditional security impact.
+
+## Findings
+
+- [ ] **F001 - Client-controlled paths escape storage boundaries.** Upload, removal, download, and generation paths use untrusted filenames without resolved-path containment. Absolute paths and traversal can read, rename, or overwrite other files accessible to the server. Use server-generated IDs, validate paths within the intended root, and cover Windows and POSIX cases. [Upload source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/service.py#L118); [removal source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/controllers/controller.py#L91).
+- [ ] **F002 - FAISS persistence trusts executable pickle data.** Loading uses `allow_dangerous_deserialization=True` without an explicit trusted-origin check. If an attacker can replace index files, including through F001, loading can execute code. Restrict index writes and establish a trusted persistence boundary; validate the combined threat model without executing malicious payloads. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/rag/database/local_rag_database.py#L16).
+- [ ] **F003 - API operations have no authentication or authorization.** Reachable clients can read meeting content, remove files, change settings, and start expensive jobs. Define the supported deployment boundary and enforce identity and access controls where access is shared or exposed. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/controllers/controller.py#L7).
+- [ ] **F004 - Action-item generation passes an LLM instead of a document chain.** `ActionItems(llm)` later receives document objects and is expected to return an `output_text` dictionary; the extraction prompts are never wired into that path. Construct the intended refine/extraction chain and verify its input/output contract with a fake model. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/service.py#L315).
+- [ ] **F005 - Minutes generation imports an absent NER package.** `ner.documents.*` is imported during the background workflow, but the package is absent from the backend. Restore the dependency or implement the extraction step, and catch import/integration failures before reporting a viable workflow. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/minutes_service.py#L4).
+- [ ] **F006 - Document search awaits a synchronous list.** The controller awaits `Service.search_in_rag_database()`, whose result is a list. Retrieval can succeed and still produce a `TypeError`. Make the route and service consistently synchronous or asynchronous and verify the API response. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/controllers/controller.py#L233).
+- [ ] **F007 - One global task slot serves all jobs and clients.** New requests overwrite the current task; no job ID, ownership, queue, or admission control exists. Introduce independent job identities and an explicit concurrency policy. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/task/task_manager.py#L4).
+- [ ] **F008 - Progress threads overwrite completed or unrelated jobs.** Threads read global state and later replace it without checking identity or valid transitions. Older progress workers can adopt a new task or reverse completion. Scope updates to a job and make transitions atomic; a lock alone does not establish job identity. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/service.py#L47).
+- [ ] **F009 - Background failures disappear from client-visible status.** Exception handlers clear the task and re-raise after the response has been sent. Clients see Free instead of Failed and lose the reason. Retain a failed job state and a sanitized error, with correlated server logs. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/service.py#L207).
+- [ ] **F010 - Output filenames collide and truncate multi-dot names.** Minute-resolution timestamps and `transcript.split('.')[0]` allow repeated operations or different multi-dot inputs to overwrite results. Use unique job IDs and proper path-stem handling; preserve existing artifacts. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/service.py#L173).
+
+## Dependencies and implementation links
+
+Address path containment before treating stored indexes as trusted. Establish job identities before revising cancellation, progress reporting, or job metadata. Link focused implementation issues and PRs here as work proceeds.
+
+## Completion criteria
+
+- [ ] Every finding has a linked fix and validation, or an explicit evidence-based disposition.
+- [ ] Regression checks cover path containment, workflow wiring, search responses, concurrent jobs, failed states, and unique output files.
+- [ ] Validate relevant workflows with sanitized fixtures and record any remaining model/service limitations.
+- [ ] No backend review finding is silently removed or renumbered.

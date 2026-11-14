@@ -1,0 +1,50 @@
+name: Improvement or gap
+description: Propose a behavior, reliability, or maintenance improvement.
+title: "[Improvement]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues first. Keep the scope independently reviewable. Link an existing backend topic and finding ID when applicable. Use synthetic examples instead of private meeting documents.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Backend - critical and high-impact defects
+        - Backend - API, validation, and operations
+        - Backend - generation and output quality
+        - Backend - documents, retrieval, and storage
+        - Backend - parsing and evaluation
+        - Backend - maintainability, configuration, and tests
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Current gap and impact
+      description: Describe the current behavior, evidence, and practical consequence.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and scope
+      description: State the intended outcome, affected workflows, and boundaries. Mention alternatives or tradeoffs when useful.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References and dependencies
+      description: Include source links, related issues, review finding IDs, and prerequisite work. Write None if there are no dependencies.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Completion and validation criteria
+      description: Use a checklist of observable outcomes. For generation changes, specify representative inputs, model settings, and evaluation criteria.
+    validations:
+      required: true

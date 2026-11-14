@@ -1,0 +1,34 @@
+# [Backend review]: Documents, retrieval, and storage
+
+## Scope and baseline
+
+Track findings **F035-F047** from the Python backend review at [`c4808c01d8b08b800fbddcc02547afb2701554eb`](https://github.com/lucasandre22/smart-minutes/commit/c4808c01d8b08b800fbddcc02547afb2701554eb).
+
+Evidence is static inspection of index initialization, upload/removal flows, retrieval, citation assembly, and document metadata. Concurrent persistence and model-backed relevance experiments were not run. All 49 Python files parsed; full tests were unavailable because the review interpreter had no pytest installed. Relevance and OCR outcomes require representative sanitized documents.
+
+## Findings
+
+- [ ] **F035 - Empty indexes are not handled gracefully.** Search and minutes retrieval attempt to load FAISS artifacts before documents have been indexed. Return a defined empty result or clear unavailable-index state instead of an incidental loader exception. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/rag/database/local_rag_database.py#L14).
+- [ ] **F036 - Index initialization depends on directory emptiness.** Stray files or partially written artifacts prevent index creation and send execution into a failing load path. Validate required artifacts and provide an explicit initialization/rebuild strategy. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/service.py#L37).
+- [ ] **F037 - Upload and indexing are not transactional.** The source is saved before parsing/indexing; failures leave a visible but unsearchable file. Overwrites can destroy the previous valid source before validation. Stage, validate, and commit storage/index changes with recovery semantics. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/controllers/controller.py#L43).
+- [ ] **F038 - Reuploads append duplicate or obsolete vectors.** Updating adds chunks without removing the prior version. Track document identity, content hashes, versions, and vector IDs so replacement does not leave conflicting historical content searchable. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/rag/database/docs_rag_database.py#L20).
+- [ ] **F039 - Removed documents remain searchable.** Removal only renames the file and leaves its vectors intact. Delete or exclude corresponding chunks and ensure generated results do not cite removed content. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/controllers/controller.py#L105).
+- [ ] **F040 - Concurrent index updates lack synchronization and atomic persistence.** Shared FAISS state and multi-file saves can race; separate processes can retain stale cached indexes. Define writer synchronization, atomic publication/recovery, and cache refresh behavior for supported deployments. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/rag/database/docs_rag_database.py#L20).
+- [ ] **F041 - Retrieval cannot abstain from irrelevant matches.** Nearest-neighbor results have no relevance threshold and are contextualized as possible citations even when unrelated. Calibrate relevance using representative documents and return a supported no-match result. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/rag/database/local_rag_database.py#L19).
+- [ ] **F042 - Citation rendering assumes at least two results.** Unconditional `[0]` and `[1]` access crashes when fewer results exist. Support zero, one, and multiple sources explicitly. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/minutes_service.py#L105).
+- [ ] **F043 - Citation explanations and displayed sources can diverge.** Context generation uses one retriever while displayed sources come from a separate top-two search. Two chunks from one document may be presented as two documents. Derive explanation and attribution from one deduplicated evidence set. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/minutes_service.py#L74).
+- [ ] **F044 - PDF chunking discards page evidence and boundaries.** Pages are concatenated without separators and chunks retain only a source path, merging page-edge words and preventing precise page citations. Preserve page metadata and readable boundaries through ingestion/retrieval. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/rag/document_loader.py#L19).
+- [ ] **F045 - Scanned or empty PDFs have no defined handling.** There is no OCR fallback or explicit rejection for documents without extractable text. Support OCR or report unsupported/unreadable content clearly before index creation. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/rag/document_loader.py#L7).
+- [ ] **F046 - Removal leaves related artifacts and has filename conflicts.** Transcript removal leaves `.csmt` sidecars; renaming to an already existing `.removed` destination can fail on Windows. Define consistent retention/deletion behavior for originals, derived content, and index entries, including repeated removal/reupload. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/service.py#L144).
+- [ ] **F047 - Recursive file listing returns ambiguous basenames.** Nested files are discovered with `rglob()` but represented only by basename, so duplicate names cannot be identified or downloaded reliably. Return stable IDs or validated relative paths consistently across list/download/remove operations. [Source](https://github.com/lucasandre22/smart-minutes/blob/c4808c01d8b08b800fbddcc02547afb2701554eb/backend/api/services/service.py#L112).
+
+## Dependencies and implementation links
+
+Coordinate file identities and persistence trust with F001-F002; staged upload limits/validation with F012-F014; minutes integration with F005; and source evidence/output structure with F032. Link implementation issues and PRs here.
+
+## Completion criteria
+
+- [ ] Every finding has a linked fix and validation, or an evidence-based disposition.
+- [ ] Cover fresh/partial indexes, upload rollback, replacement, deletion, concurrent writes, and cache refresh.
+- [ ] Verify zero/one/multiple citation results, source deduplication, page evidence, unreadable PDFs, and duplicate basenames.
+- [ ] Record relevance thresholds and evaluation inputs/results for retrieval behavior changes.
